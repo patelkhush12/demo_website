@@ -1,0 +1,79 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+    <section class="wrapper bg-light">
+        <div class="container py-16">
+            <div class="row gx-lg-8 gx-xl-12">
+                <div class="col-lg-8">
+                    <div class="blog single">
+                        <div class="card">
+                            <figure class="card-img-top"><img
+                                    [src]="apiData.detail.image ? apiData.detail.image : blogDefaultImage" alt="">
+                            </figure>
+                            <div class="card-body px-3 px-sm-10">
+                                <app-page-share></app-page-share>
+                                <div class="classic-view">
+                                    <article class="post">
+                                        <ul class="post-meta">
+                                            <li class="post-comments" *ngFor="let author of apiData.detail.authors">
+                                                <a><i class="uil uil-user"></i>{{author.name}}</a>
+                                            </li>
+                                            <li class="post-date"><i
+                                                    class="uil uil-calendar-alt"></i><span>{{apiData.detail.created_at
+                                                    | date}}</span>
+                                            </li>
+                                            <li class="post-comments"><a><i
+                                                        class="uil uil-eye"></i>{{apiData.detail.views}}</a></li>
+                                        </ul>
+                                        <div class="post-content my-5">
+                                            <h2 class="h1 mb-4">{{apiData.detail.title}}</h2>
+                                            <p #para class="mainpara"
+                                                [innerHTML]="apiData.detail.description | safeHtml"></p>
+                                        </div>
+
+                                        <app-bottom-bar-share-n-category [route]="'/case-study/'"
+                                            [categories]="apiData.detail.categories"></app-bottom-bar-share-n-category>
+
+                                    </article>
+
+                                </div>
+                                <hr>
+                                <app-detail-comment [comments]="apiData.comments"
+                                    [resourceUrl]="'/case_study/public_case_study_list/'+ apiData.detail.slug + '/comment/'">
+                                </app-detail-comment>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="col-lg-4 sidebar mt-11 mt-lg-6">
+                    <app-sidebar-search *ngIf="localstoragelanguage == 'EN'"
+                        [route]="'/' + localstoragelanguage +'/case-studies/'" class="hide2"></app-sidebar-search>
+                    <app-sidebar-search *ngIf="localstoragelanguage == 'JP'"
+                        [route]="'/' + localstoragelanguage +'/case-studies/'" class="hide2"></app-sidebar-search>
+                    <app-sidebar-search *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/case-studies/'"
+                        class="hide2"></app-sidebar-search> <app-sidebar-recent *ngIf="localstoragelanguage == 'EN'"
+                        [route]="'/' + localstoragelanguage +'/case-studies/'"
+                        label=" {{msglabel.default.RecentCaseStudies}}" [recentItem]="apiData.recent">
+                    </app-sidebar-recent>
+                    <app-sidebar-recent *ngIf="localstoragelanguage == 'JP'"
+                        [route]="'/' + localstoragelanguage +'/case-studies/'"
+                        label=" {{msglabel.default.RecentCaseStudies}}" [recentItem]="apiData.recent">
+                    </app-sidebar-recent>
+                    <app-sidebar-recent *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/case-studies/'"
+                        label=" {{msglabel.default.RecentCaseStudies}}" [recentItem]="apiData.recent">
+                    </app-sidebar-recent>
+                    <app-sidebar-categories *ngIf="localstoragelanguage == 'EN'"
+                        [route]="'/' + localstoragelanguage +'/case-studies/'" [categories]="apiData.category.results">
+                    </app-sidebar-categories>
+                    <app-sidebar-categories *ngIf="localstoragelanguage == 'JP'"
+                        [route]="'/' + localstoragelanguage +'/case-studies/'" [categories]="apiData.category.results">
+                    </app-sidebar-categories>
+                    <app-sidebar-categories *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/case-studies/'"
+                        [categories]="apiData.category.results">
+                    </app-sidebar-categories>
+                    <app-side-banner-v1></app-side-banner-v1>
+                </aside>
+            </div>
+        </div>
+        <app-enquiryform></app-enquiryform>
+
+    </section>
+</ng-container>

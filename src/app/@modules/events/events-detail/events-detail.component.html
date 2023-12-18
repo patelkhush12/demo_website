@@ -1,0 +1,72 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+    <section class="wrapper bg-light">
+        <div class="container py-16">
+            <div class="row gx-lg-8 gx-xl-12">
+                <div class="col-lg-8">
+                    <div class="blog single">
+                        <div class="card">
+                            <figure class="card-img-top">
+                                <img [src]="apiData.detail.image"
+                                    style="height: 14rem!important;width:100%!important;object-fit:contain;"
+                                    [alt]="apiData.detail.title">
+                            </figure>
+                            <div class="card-body">
+                                <app-page-share></app-page-share>
+                                <div class="classic-view">
+                                    <article class="post">
+                                        <div class="post-content mb-5">
+                                            <h2 class="h1 mb-4">{{apiData.detail.title}}</h2>
+                                            <p #para class="mainpara"
+                                                [innerHTML]="apiData.detail.description | safeHtml"></p>
+                                        </div>
+                                        <app-bottom-bar-share-n-category [route]="'/events/'"
+                                            [categories]="apiData.detail.categories">
+                                        </app-bottom-bar-share-n-category>
+                                    </article>
+                                </div>
+                                <hr>
+                                <!-- <app-detail-comment [comments]="apiData.comments"
+                                    [resourceUrl]="'/news_articles/public_news_list/'+ apiData.detail.slug + '/comment/'">
+                                </app-detail-comment> -->
+                                <app-detail-comment [comments]="apiData.comments"
+                                    [resourceUrl]="'/event/public_event/'+ apiData.detail.slug + '/comment/'">
+                                </app-detail-comment>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="col-lg-4 sidebar mt-11 mt-lg-6">
+                    <app-sidebar-search *ngIf="localstoragelanguage == 'EN'"
+                        [route]="'/' + localstoragelanguage +'/events/'" class="hide2"></app-sidebar-search>
+                    <app-sidebar-search *ngIf="localstoragelanguage == 'JP'"
+                        [route]="'/' + localstoragelanguage +'/events/'" class="hide2"></app-sidebar-search>
+                    <app-sidebar-search *ngIf="localstoragelanguage == 'IN'" [route]="'/' +'/events/'"
+                        class="hide2"></app-sidebar-search>
+                    <app-sidebar-event-recent *ngIf="localstoragelanguage == 'EN'"
+                        [route]="'/' + localstoragelanguage +'/events/'" label="{{msglabel.default.RecentEvents}}"
+                        [recentItem]="apiData.recent">
+                    </app-sidebar-event-recent>
+                    <app-sidebar-event-recent *ngIf="localstoragelanguage == 'JP'"
+                        [route]="'/' + localstoragelanguage +'/events/'" label="{{msglabel.default.RecentEvents}}"
+                        [recentItem]="apiData.recent">
+                    </app-sidebar-event-recent>
+                    <app-sidebar-event-recent *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/events/'"
+                        label="{{msglabel.default.RecentEvents}}" [recentItem]="apiData.recent">
+                    </app-sidebar-event-recent>
+                    <app-sidebar-categories *ngIf="localstoragelanguage == 'EN'"
+                        [route]="'/' + localstoragelanguage +'/events/'" [categories]="apiData.category.results">
+                    </app-sidebar-categories>
+                    <app-sidebar-categories *ngIf="localstoragelanguage == 'JP'"
+                        [route]="'/' + localstoragelanguage +'/events/'" [categories]="apiData.category.results">
+                    </app-sidebar-categories>
+                    <app-sidebar-categories *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/events/'"
+                        [categories]="apiData.category.results">
+                    </app-sidebar-categories>
+                    <app-side-banner-v1></app-side-banner-v1>
+                </aside>
+            </div>
+        </div>
+        <app-enquiryform></app-enquiryform>
+
+    </section>
+</ng-container>

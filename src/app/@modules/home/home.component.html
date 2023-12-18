@@ -1,0 +1,69 @@
+<!-- <div class="content-wrapper">
+    <app-header></app-header>
+    <app-banner></app-banner>
+</div>
+<app-footer></app-footer>
+<div class="progress-wrap">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+    </svg>
+</div> -->
+
+<ng-container *ngIf="apiData$ | async as apiData">
+
+    <div class="my-panel" slide-nos="01" data-color="c100">
+        <app-banner [slider]="apiData.slider"></app-banner>
+    </div>
+    <div class="my-panel" slide-nos="02" data-color="c0">
+        <app-clients [clients]="apiData.client"></app-clients>
+    </div>
+    <div class="my-panel" slide-nos="03" data-color="c1">
+        <app-what-we-do [whatWeDo]="apiData.what_we_do"></app-what-we-do>
+    </div>
+    <div class="my-panel" slide-nos="04" data-color="c3">
+        <app-deep-expertise [expertise]="apiData.expertise"></app-deep-expertise>
+    </div>
+    <div class="my-panel" slide-nos="05" data-color="c4">
+        <app-experience [experience]="apiData.experience"></app-experience>
+    </div>
+    <div class="my-panel" slide-nos="06" data-color="c5">
+        <app-testimonials [testimonials]="apiData.testimonial"></app-testimonials>
+    </div>
+    <!-- <div class="my-panel" slide-nos="07" data-color="c0">
+            <app-clients [clients]="apiData.client"></app-clients>
+        </div> -->
+    <div class="my-panel" slide-nos="07" data-color="c0">
+        <app-contact-us></app-contact-us>
+    </div>
+</ng-container>
+
+<!-- </div> -->
+<!-- <app-footer></app-footer> -->
+
+<div class="progress-wrap" *ngIf="offsetFlag">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+    </svg>
+</div>
+<!-- <div   class="counter-panel {{navColorClass}}">
+    <div class="nos font-bold current-page"  [@fadeUpInBig]="currentNos" [@fadeOutOnLeave]="currentNos"> 
+        {{currentNos}} 
+    </div>
+    <div class="bar"></div>
+    <div class="nos font-bold text-center">07</div>
+</div> -->
+<ngx-spinner><img class="image rotate" src="../../../assets/img/Ncirclelogo1.png"></ngx-spinner>
+
+<ng-container *ngIf="navSetting$ | async as  navSetting">
+
+    <app-home-counter *ngIf="!(currentNos=='07' || currentNos=='01') " [navColorClass]="navSetting.navColorClass"
+        [currentNos]="currentNos"></app-home-counter>
+    <div class="down-arrow  {{navSetting.navColorClass}}" *ngIf="!(currentNos=='07' || currentNos=='01') ">
+        <!-- <img src="assets/img/home/down.svg" alt=""> -->
+        <div class="arrow-wrapper">
+            <!-- <div class="chevron"></div> -->
+            <div class="chevron"></div>
+            <div class="chevron"></div>
+        </div>
+    </div>
+</ng-container>

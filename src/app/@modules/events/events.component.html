@@ -1,0 +1,83 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+  <app-image-with-page-title image="{{bannerData?.image}}" title="{{bannerData?.pagename}}">
+  </app-image-with-page-title>
+  <section class="wrapper bg-light">
+    <div class="container py-14 py-md-16">
+      <div class="row gx-lg-8 gx-xl-12">
+        <div class="col-lg-8">
+          <div class="hide">
+            <app-sidebar-search [route]="'/events/'"></app-sidebar-search>
+          </div>
+          <div class="blog grid grid-view">
+            <div class="row isotope gx-md-8 gy-8 mb-8">
+              <article class="item post col-md-6" style="cursor: pointer;" *ngFor="let ev of eventListData.results">
+                <div class="card h-100">
+                  <figure class="card-img-top overlay overlay-1 hover-scale">
+                    <a (click)="getBlogLink(ev.slug)" target="_blank">
+                      <img [src]="ev?.image" [alt]="ev?.title" class="h-20" style="object-fit: contain;"><span
+                        class="bg"></span>
+                    </a>
+                  </figure>
+                  <div class="card-body px-3 px-sm-7">
+                    <div class="post-header">
+                      <h2 class="post-title h3 mt-1 mb-3">
+                        <!-- <a class="link-dark">{{ev.title}}</a> -->
+                        <a [routerLink]="ev.slug" class="pointers link-dark" (click)="getBlogLink(ev.slug)"
+                          target="_blank">{{ev?.title}}</a>
+
+                      </h2>
+                    </div>
+                    <div class="post-content">
+                      <p [innerHTML]="ev?.description | truncateHtml:[150]"></p>
+                    </div>
+                  </div>
+                  <div class="card-footer px-3 px-sm-7">
+                    <ul class="post-meta d-flex mb-0">
+                      <li class="post-date"><i class="uil uil-calendar-alt"></i><span>{{ev?.from_date | date}}</span>
+                      </li>
+                      <li class="post-likes ms-auto"><a><i class="uil uil-eye"></i>{{ev?.views}}</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div *ngIf="eventListData.count == 0" class="alert alert-primary alert-icon" role="alert">
+            <i class="uil uil-file-question"></i>{{msglabel.default.NoEventsFound}}
+          </div>
+          <app-pagination (changePage)="onPageChange($event)" *ngIf="eventListData.count > 0" [pageSize]="4"
+            [totalPages]="eventListData.count"></app-pagination>
+        </div>
+        <aside class="col-lg-4 sidebar mt-8 mt-lg-0">
+          <app-sidebar-search *ngIf="localstoragelanguage == 'EN'" [route]="'/' + localstoragelanguage +'/events/'"
+            class="hide2"></app-sidebar-search>
+          <app-sidebar-search *ngIf="localstoragelanguage == 'JP'" [route]="'/' + localstoragelanguage +'/events/'"
+            class="hide2"></app-sidebar-search>
+          <app-sidebar-search *ngIf="localstoragelanguage == 'IN'" [route]="'/' +'/events/'"
+            class="hide2"></app-sidebar-search>
+          <app-sidebar-event-recent *ngIf="localstoragelanguage == 'EN'"
+            [route]="'/' + localstoragelanguage +'/events/'" label="{{msglabel.default.RecentEvents}}"
+            [recentItem]="apiData.recent">
+          </app-sidebar-event-recent>
+          <app-sidebar-event-recent *ngIf="localstoragelanguage == 'JP'"
+            [route]="'/' + localstoragelanguage +'/events/'" label="{{msglabel.default.RecentEvents}}"
+            [recentItem]="apiData.recent">
+          </app-sidebar-event-recent>
+          <app-sidebar-event-recent *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/events/'"
+            label="{{msglabel.default.RecentEvents}}" [recentItem]="apiData.recent">
+          </app-sidebar-event-recent>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'EN'" [route]="'/' + localstoragelanguage +'/events/'"
+            [categories]="apiData.category.results"></app-sidebar-categories>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'JP'" [route]="'/' + localstoragelanguage +'/events/'"
+            [categories]="apiData.category.results"></app-sidebar-categories>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'IN'" [route]="'/' +'/events/'"
+            [categories]="apiData.category.results"></app-sidebar-categories>
+          <app-side-banner-v1></app-side-banner-v1>
+        </aside>
+      </div>
+    </div>
+    <app-enquiryform></app-enquiryform>
+
+  </section>
+
+</ng-container>

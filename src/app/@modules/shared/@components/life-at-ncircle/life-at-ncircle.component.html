@@ -1,0 +1,40 @@
+<section class="wrapper bg-light wrapper-border">
+  <div class="container pt-15 pt-md-17 pb-13 pb-md-15">
+
+    <div class="row grid-view">
+      <div class="col-md-12">
+
+
+        <swiper [config]="config" class="swiper-slider-hero" id="home">
+
+          <section class="wrapper bg-light" *ngFor="let item of gallery;let i = index">
+            <div class="container">
+              <div class="card bg-soft-primary rounded-4 mt-2">
+                <div class="card-body p-md-10 py-xl-11 px-xl-15">
+                  <div class="row gx-lg-8 gx-xl-0 gy-10 align-items-center" [ngClass]="{'flex-row-reverse':i%2==0}">
+                    <div class="col-lg-6 order-lg-2 d-flex position-relative">
+                      <img class="img-fluid ms-auto mx-auto me-lg-8 rounded-4" [src]="item.image" alt="">
+
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-start">
+                      <h1 class="display-2 mb-5  ms-auto mx-auto ms-lg-8">
+                        {{item.title}}
+                      </h1>
+                      <p class="lead fs-lg lh-sm mb-7 pe-xl-10 ms-auto mx-auto ms-lg-8">
+                       {{item.content}}                      </p>
+                      <div class="d-flex justify-content-center justify-content-lg-start ms-auto mx-auto ms-lg-8">
+                        <span><a target="_blank" href="https://ncircletech.zohorecruit.com/jobs/Careers" class="btn btn-lg btn-primary rounded-pill me-2">{{msglabel.default.WorkWithUs}}</a></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </swiper>
+      </div>
+    </div>
+
+
+  </div>
+</section>

@@ -1,0 +1,12 @@
+<ng-container *ngIf=" wrapperData$ | async as  wrapperData">
+    <div class="content-wrapper" *ngIf="navBarSetting$ | async as navBarSetting">
+        <app-header *ngIf="showLayoutNavBarAndFooter" [navBgClass]="navBarSetting?.navBgClass"
+            [navColorClass]="navBarSetting.navColorClass" [navTextModeIsWhite]="navBarSetting.navTextModeIsWhite">
+        </app-header>
+        <router-outlet (activate)="onActivate($event)"></router-outlet>
+    </div>
+    <app-footer [services]="wrapperData?.footer?.services" [products]="wrapperData?.footer?.product_stores"
+        *ngIf="showLayoutNavBarAndFooter"></app-footer>
+
+</ng-container>
+<!-- <app-cookie-consent></app-cookie-consent> -->

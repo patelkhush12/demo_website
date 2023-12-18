@@ -1,0 +1,55 @@
+<!-- <ul *ngIf="pager.pages && pager.pages.length" class="pagination d-flex justify-content-center">
+  <li class="page-item first-item mx-2">
+    <button size="small" [disabled]="pager.currentPage === 1" (click)="setPage(1)" outline shape="round"
+      status="primary" class="">
+
+      <span aria-hidden="true"><i class="uil uil-arrow-left"></i></span>
+    </button>
+  </li>
+  <li class="page-item previous-item mx-2">
+    <button [disabled]="pager.currentPage === 1" size="small" (click)="setPage(pager.currentPage - 1)" outline
+      shape="round" status="primary" class="">
+
+    </button>
+  </li>
+  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}"
+    class="page-item number-item mx-2">
+    <button (click)="setPage(page)" size="small" outline shape="round" class="">
+      {{page}}
+    </button>
+
+  </li>
+  <li class="page-item next-item mx-2">
+    <button [disabled]="pager.currentPage === pager.totalPages" size="small" (click)="setPage(pager.currentPage + 1)"
+      outline shape="round" status="primary" class="">
+
+    </button>
+  </li>
+  <li class="page-item last-item mx-2">
+    <button [disabled]="pager.currentPage === pager.totalPages" size="small" (click)="setPage(pager.totalPages)" outline
+      shape="round" status="primary" class="">
+
+      <span aria-hidden="true"><i class="uil uil-arrow-right"></i></span>
+    </button>
+  </li>
+</ul> -->
+
+<nav class="d-flex" aria-label="pagination"> 
+  <ul class="pagination">
+    <li class="page-item">
+      <button class="page-link" aria-label="Previous" [disabled]="pager.currentPage === 1"  size="small"
+        (click)="setPage(pager.currentPage - 1)">
+        <span aria-hidden="true"><i class="uil uil-arrow-left"></i></span>
+      </button>
+    </li>
+    <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+      <button (click)="setPage(page)" class="page-link">{{page}}</button>
+    </li>
+    <li class="page-item">
+      <button [disabled]="pager.currentPage === pager.totalPages" size="small" (click)="setPage(pager.currentPage + 1)"
+        class="page-link" aria-label="Next">
+        <span aria-hidden="true"><i class="uil uil-arrow-right"></i></span>
+      </button>
+    </li>
+  </ul>
+</nav>

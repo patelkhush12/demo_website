@@ -1,0 +1,9 @@
+<div class="widget my-5">
+    <h4 class="widget-title mb-3">{{msglabel.default.Locations}}</h4>
+    <ul class="unordered-list bullet-primary text-reset">
+        <li><a style="cursor: pointer;" (click)="navigateToCategory('')">{{msglabel.default.All}}</a></li>
+        <li *ngFor="let item of categories">
+            <a style="cursor: pointer;" (click)="navigateToCategory(item.slug)">{{item.name}}</a>
+        </li>
+    </ul>
+</div>

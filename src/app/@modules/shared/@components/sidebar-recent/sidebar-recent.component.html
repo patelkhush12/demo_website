@@ -1,0 +1,26 @@
+<div class="widget">
+  <h4 class="widget-title mb-3">{{label}}</h4>
+  <ul class="image-list">
+    <li *ngFor="let item of recentItem">
+      <figure class="rounded"><a>
+          <img [src]="item.image ? item.image : blogDefaultImage" [alt]="item.title"
+            style="height: 3rem!important;object-fit: cover;">
+        </a>
+      </figure>
+      <div class="post-content">
+        <h6 class="mb-2"> <a [routerLink]="route+item.slug" class="link-dark">{{item.title |
+            truncateHtml:[50]}}</a>
+        </h6>
+        <ul class="post-meta">
+          <li class="post-date"><i class="uil uil-calendar-alt"></i><span *ngIf="item.blog_date">{{item.blog_date |
+              date}}</span>
+            <span *ngIf="item.casestudy_date">{{item.casestudy_date | date}}</span>
+            <span *ngIf="item.technologyhandout_date">{{item.technologyhandout_date | date}}</span>
+            <span *ngIf="item.webinar_date">{{item.webinar_date | date}}</span>
+          </li>
+          <li class="post-comments"><a><i class="uil uil-eye"></i>{{item.views}}</a></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>

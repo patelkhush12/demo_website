@@ -1,0 +1,180 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+    <section class="wrapper bg-light">
+        <div class="container py-16">
+            <div class="row gx-lg-8 gx-xl-12">
+                <div class="col-lg-8">
+                    <div class="Technology Handout single">
+                        <div class="card">
+                            <figure class="card-img-top">
+                                <img [src]="apiData.detail.image" style="height: 16rem!important;object-fit:cover"
+                                    [alt]="apiData.detail.title">
+                            </figure>
+                            <div class="card-body">
+                                <app-page-share></app-page-share>
+                                <div class="classic-view">
+                                    <article class="post">
+                                        <div class="post-content mb-5">
+                                            <h2 class="h1 mb-4">{{apiData.detail.title}}</h2>
+                                            <p #para class="mainpara"
+                                                [innerHTML]="apiData.detail.description | safeHtml"
+                                                data-bs-toggle="modal" data-bs-target="#modal-04"></p>
+                                        </div>
+
+                                        <app-bottom-bar-share-n-category [route]="'/technology-handout/'"
+                                            [categories]="apiData.detail.categories">
+                                        </app-bottom-bar-share-n-category>
+
+                                    </article>
+
+                                </div>
+                                <hr>
+                                <app-detail-comment [comments]="apiData.comments"
+                                    [resourceUrl]="'/tech_handout/public_handout/'+ apiData.detail.slug + '/comment/'">
+                                </app-detail-comment>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="col-lg-4 sidebar mt-11 mt-lg-6">
+                    <app-sidebar-search *ngIf="localstoragelanguage == 'EN'"
+                        [route]="'/' + localstoragelanguage +'/technology-handouts/'"
+                        class="hide2"></app-sidebar-search>
+                    <app-sidebar-search *ngIf="localstoragelanguage == 'JP'"
+                        [route]="'/' + localstoragelanguage +'/technology-handouts/'"
+                        class="hide2"></app-sidebar-search>
+                    <app-sidebar-search *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/technology-handouts/'"
+                        class="hide2"></app-sidebar-search>
+                    <app-sidebar-recent *ngIf="localstoragelanguage == 'EN'"
+                        [route]="'/' + localstoragelanguage +'/technology-handouts/'"
+                        label="{{msglabel.default.RecentTechnologyHandout}}" [recentItem]="apiData.recent">
+                    </app-sidebar-recent>
+
+                    <app-sidebar-recent *ngIf="localstoragelanguage == 'JP'"
+                        [route]="'/' + localstoragelanguage +'/technology-handouts/'"
+                        label="{{msglabel.default.RecentTechnologyHandout}}" [recentItem]="apiData.recent">
+                    </app-sidebar-recent>
+
+                    <app-sidebar-recent *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/technology-handouts/'"
+                        label="{{msglabel.default.RecentTechnologyHandout}}" [recentItem]="apiData.recent">
+                    </app-sidebar-recent>
+                    <app-sidebar-categories *ngIf="localstoragelanguage == 'EN'"
+                        [route]="'/' + localstoragelanguage +'/technology-handouts/'"
+                        [categories]="apiData.category.results">
+                    </app-sidebar-categories>
+                    <app-sidebar-categories *ngIf="localstoragelanguage == 'JP'"
+                        [route]="'/' + localstoragelanguage +'/technology-handouts/'"
+                        [categories]="apiData.category.results">
+                    </app-sidebar-categories>
+                    <app-sidebar-categories *ngIf="localstoragelanguage == 'IN'" [route]="'/' + '/technology-handouts/'"
+                        [categories]="apiData.category.results">
+                    </app-sidebar-categories>
+                    <app-side-banner-v1></app-side-banner-v1>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="modal-04" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content text-center">
+                <div class="modal-body">
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h3>{{msglabel.default.DownloadTechnologyHandout}}</h3>
+                    <div class="newsletter-wrapper">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <div id="mc_embed_signup">
+                                    <form class="contact-form needs-validation" method="post"
+                                        action="./assets/php/contact.php" novalidate="" [formGroup]="techHandoutForm">
+                                        <div class="messages"></div>
+                                        <div class="row gx-4">
+                                            <div class="col-md-12">
+                                                <div class="form-floating mb-4">
+                                                    <input id="form_name" type="text" name="name" class="form-control"
+                                                        placeholder="Jane" required="" formControlName="name">
+                                                    <label for="form_name">{{msglabel.default.Name}}
+                                                        *</label>
+                                                    <div class="invalid-feedback d-block"
+                                                        *ngIf="techHandoutForm.get('name')?.hasError('required') && techHandoutForm.get('name')?.touched">
+                                                        {{msglabel.default.Pleaseenteryourname}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-floating mb-4">
+                                                    <input id="form_lastname" type="email" name="email"
+                                                        class="form-control" placeholder="jane.doe@example.com"
+                                                        required="" formControlName="email">
+                                                    <label for="form_lastname">{{msglabel.default.Email}}
+                                                        *</label>
+                                                    <div class="invalid-feedback d-block"
+                                                        *ngIf="techHandoutForm.get('email')?.hasError('required') && techHandoutForm.get('email')?.touched">
+                                                        {{msglabel.default.Pleaseenteremail}}
+                                                    </div>
+                                                    <div class="invalid-feedback d-block"
+                                                        *ngIf="techHandoutForm.get('email')?.hasError('pattern') && techHandoutForm.get('email')?.touched">
+                                                        {{msglabel.default.Pleaseentervalidworkemail}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-floating mb-4">
+                                                    <input id="form_email" type="number" name="mobile"
+                                                        class="form-control" placeholder="1234567890" required=""
+                                                        formControlName="mobile">
+                                                    <label for="form_email">{{msglabel.default.MobileNo}}
+                                                        *</label>
+                                                    <div class="invalid-feedback d-block"
+                                                        *ngIf="techHandoutForm.get('mobile')?.hasError('required') && techHandoutForm.get('mobile')?.touched">
+                                                        {{msglabel.default.Pleaseentermobilenumber}}
+                                                    </div>
+                                                    <div class="invalid-feedback d-block"
+                                                        *ngIf="techHandoutForm.get('mobile')?.hasError('pattern') && techHandoutForm.get('mobile')?.touched">
+                                                        {{msglabel.default.Pleaseentervalidmobilenumber}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-floating mb-4">
+                                                    <textarea id="form_email" type="text" name="requirement"
+                                                        class="form-control" placeholder="Type here..." required=""
+                                                        formControlName="requirement" rows="15"></textarea>
+                                                    <label for="form_email">{{msglabel.default.Requirement}}
+                                                        *</label>
+                                                    <div class="invalid-feedback d-block"
+                                                        *ngIf="techHandoutForm.get('requirement')?.hasError('required') && techHandoutForm.get('requirement')?.touched">
+                                                        {{msglabel.default.Pleaseenterrequirement}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="input-group mb-4">
+                                                    <re-captcha
+                                                        style="display:flex;transform:scale(1.0);-webkit-transform:scale(1.0);transform-origin:0 0;-webkit-transform-origin:0 0;"
+                                                        name="recaptcha" formControlName="recaptcha">
+                                                    </re-captcha>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 text-center">
+                                                <input type="submit" [disabled]="!techHandoutForm.valid"
+                                                    class="btn btn-primary rounded-pill btn-send mb-3"
+                                                    value="Send message" (click)="onSave(apiData.detail.slug)"
+                                                    *ngIf="!formSubmitted">
+                                                <p class="text-muted" *ngIf="formSubmitted">
+                                                    {{msglabel.default.Pleasewait}}</p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-enquiryform></app-enquiryform>
+
+    <!-- <app-footer></app-footer> -->
+</ng-container>

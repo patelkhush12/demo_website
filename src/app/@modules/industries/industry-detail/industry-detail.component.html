@@ -1,0 +1,89 @@
+<ng-container *ngIf="apiData$|async as apiData">
+    <section class="wrapper bg-soft-primary">
+        <div class="container pt-18 pb-15 pt-md-18 pb-md-16 text-center">
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <h1 class="display-1 mt-3">{{msglabel.default.Industries}}</h1>
+                    <!-- <p class="lead fs-lg text-center px-xl-0">Our Industries</p> -->
+                    <!-- <nav class="d-inline-block" aria-label="breadcrumb">
+                        <ol class="breadcrumb d-flex">
+                            <li class="breadcrumb-item"><a routerLink="../">Industries</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{apiData.title}}</li>
+                        </ol>
+                    </nav> -->
+                    <div class="d-inline-block">
+                        <div class="d-none d-lg-block">
+                            <div class="d-flex">
+                                <p class=""><a routerLink="../">{{msglabel.default.Industries}}</a></p>
+                                <i class="uil uil-arrow-right"></i>
+                                <p class="active" aria-current="page">{{apiData.title}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-lg-none">
+                        <p class="mb-0"><a routerLink="../">{{msglabel.default.Industries}}</a></p>
+                        <i class="uil uil-arrow-down"></i>
+                        <p class="active" aria-current="page">{{apiData.title}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="wrapper bg-light">
+        <div class="container py-14 py-md-16">
+            <div class="row gy-10 gy-sm-13 gx-lg-3 align-items-center justify-content-center">
+                <div class="col-md-8 col-lg-5 offset-lg-1 order-lg-2 position-relative">
+                    <div class="shape rounded-circle bg-line primary rellax w-18 h-18" data-rellax-speed="1"
+                        style="top: -2rem; right: -1.9rem; transform: translate3d(0px, 14px, 0px);"></div>
+                    <div class="shape rounded bg-soft-primary rellax d-md-block" data-rellax-speed="0"
+                        style="bottom: -1.8rem; left: -1.5rem; width: 85%; height: 90%; transform: translate3d(0px, 0px, 0px);">
+                    </div>
+                    <figure class="rounded">
+                        <img [src]="apiData.inner_description_image"
+                            style="height: 20rem!important; object-fit: cover;">
+                    </figure>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="display-4 mb-7">{{apiData.title}}</h3>
+                    <p #para class="mainpara" [innerHTML]="apiData.inner_description | safeHtml"
+                        style="line-height:1.4rem;">
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="wrapper image-wrapper bg-image bg-overlay" data-image-src="./assets/img/photos/bg1.jpg"
+        [style]="'background-image: url(&quot;'+ apiData.tagline_image +'&quot;);'">
+        <div class="container py-18">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="display-6 mb-6 text-white pe-xxl-18">
+                        {{apiData.tagline}}
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="wrapper bg-light">
+        <div class="container py-14 py-md-16">
+            <div class="row grid-view- gy-6 gy-xl-3">
+                <div class="col-md-6 col-xl-4" *ngFor="let card of apiData.industry_card">
+                    <div class="card card2 shadow-lg h-100">
+                        <div class="card-body d-flex flex-column justify-content-around">
+                            <h4 class="mb-1">{{card.name}}</h4>
+                            <div class="meta mb-2">{{card.inner_description}}</div>
+                            <div class="pill-wrap">
+
+                                <a class="btn btn-outline-primary rounded-pill btn-sm mx-2 my-2"
+                                    style="padding: 0 .5rem !important;" href=""
+                                    *ngFor="let tag of card.tags">{{tag.name}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-enquiryform></app-enquiryform>
+
+    </section>
+</ng-container>

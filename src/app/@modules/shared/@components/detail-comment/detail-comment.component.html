@@ -1,0 +1,63 @@
+<div id="comments">
+    <h3 class="mb-6">{{comments.count}} Comments</h3>
+    <ol id="singlecomments" class="commentlist">
+        <li class="comment mb-3" *ngFor="let comment of comments.results">
+            <div class="row">
+                <div class="col-md-9 d-flex">
+                    <img class="rounded-circle d-none d-md-block" style="margin:0 0.5rem; width: 2rem; height: 2rem;"
+                        alt="" [src]="url+comment.name">
+                    <div>
+
+                        <h6 class="comment-author"><a class="link-dark">{{comment.name}}</a></h6>
+                        <ul class="post-meta">
+                            <li>
+                                {{comment.comment}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+
+
+                    <div class="d-inline mr-2">
+
+                        <i class="uil uil-calendar-alt "></i>
+                    </div>
+                    {{comment.created_at | date}}
+
+                </div>
+            </div>
+        </li>
+        <app-pagination (changePage)="onPageChange($event)" *ngIf="comments.count > 5" [pageSize]="5"
+            [totalPages]="comments.count"></app-pagination>
+    </ol>
+</div>
+<hr>
+<h3 class="mb-3">{{msglabel.default.Wouldyouliketoshareyourthoughts}}</h3>
+<p class="mb-7">{{msglabel.default.YouremailaddresswillnotbepublishedRequiredfieldsaremarked}}*
+</p>
+<form [formGroup]="commentForm" (ngSubmit)="saveComment()" class="comment-form">
+    <div class="form-floating mb-4">
+        <input formControlName="name" type="text" class="form-control" placeholder="Name*" id="c-name">
+        <label for="c-name">{{msglabel.default.Name}} *</label>
+    </div>
+    <div class="form-floating mb-4">
+        <input formControlName="email" type="email" class="form-control" placeholder="Email*" id="c-email">
+        <label for="c-email">{{msglabel.default.Email}}*</label>
+    </div>
+    <div class="form-floating mb-4">
+        <input formControlName="company" type="text" class="form-control" placeholder="Company" id="c-web">
+        <label for="c-web">{{msglabel.default.Company}}</label>
+    </div>
+    <div class="form-floating mb-4">
+        <textarea formControlName="comment" name="textarea" class="form-control" placeholder="Comment"
+            style="height: 150px"></textarea>
+        <label>{{msglabel.default.Comment}} *</label>
+    </div>
+
+    <re-captcha
+        style="display:flex;transform:scale(1.0);-webkit-transform:scale(1.0);transform-origin:0 0;-webkit-transform-origin:0 0;"
+        name="recaptcha" formControlName="recaptcha"> </re-captcha>
+
+    <button type="submit" class="btn btn-primary rounded-pill mt-4 mb-0">{{msglabel.default.Submit}}</button>
+</form>

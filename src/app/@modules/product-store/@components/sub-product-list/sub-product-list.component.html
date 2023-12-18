@@ -1,0 +1,73 @@
+<ng-container *ngIf="param$ | async as param"></ng-container>
+<ng-container *ngIf="apiData$ | async as apiData">
+    <app-image-with-page-title image="/assets/img/page-title-images/blog.jpg"
+        title="{{msglabel.default.nCircleSubProducts}}">
+    </app-image-with-page-title>
+    <section class="wrapper bg-light">
+        <div class="container py-14 py-md-16">
+            <div class="row gx-lg-8 gx-xl-12">
+                <div class="col-lg-12">
+                    <div class="blog grid grid-view">
+                        <div class="row isotope gx-md-8 gy-8 mb-8">
+                            <section class="wrapper bg-light wrapper-border">
+                                <div class="container pb-11">
+                                    <ul class="list-inline mb-0 d-flex justify-content-center flex-wrap">
+                                        <li class="list-inline-item me-1 mb-2" (click)="navigateToCategory('')">
+                                            <a style="cursor: pointer;"
+                                                class="btn btn-soft-ash btn-sm rounded text-primary pe-none">{{msglabel.default.All}}</a>
+                                        </li>
+                                        <li class="list-inline-item me-1 mb-2"
+                                            *ngFor="let subProd of subProductListData.category"
+                                            (click)="navigateToCategory(subProd.slug)">
+                                            <a style="cursor: pointer;"
+                                                class="btn btn-soft-ash btn-sm rounded text-primary pe-none">{{subProd.name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </section>
+                            <article class="item post col-lg-4 col-md-6 col-sm-12" style="cursor: pointer;"
+                                routerLink="{{subProd.slug}}" *ngFor="let subProd of subProductListData.list.results">
+                                <div class="card h-100">
+                                    <figure class="card-img-top overlay overlay-1 hover-scale">
+                                        <a>
+                                            <img [src]="subProd.logo ? subProd.logo : subProductDefaultImage"
+                                                [alt]="subProd.title" class="h-20" style="object-fit: contain;"><span
+                                                class="bg"></span>
+                                        </a>
+                                    </figure>
+                                    <div class="card-body px-3 px-sm-7">
+                                        <div class="post-header">
+                                            <h2 class="post-title h3 mt-1 mb-3"><a
+                                                    class="link-dark">{{subProd.title}}</a>
+                                            </h2>
+                                        </div>
+                                        <div class="post-content">
+                                            <p #para class="mainpara"
+                                                [innerHTML]="subProd.description | truncateHtml:[150]"></p>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer px-3 px-sm-7">
+                                        <ul class="post-meta d-flex mb-0">
+                                            <li class="post-date"><i
+                                                    class="uil uil-calendar-alt"></i><span>{{subProd.sub_product_version[subProd.sub_product_version.length-1].release_date
+                                                    | date
+                                                    }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div *ngIf="subProductListData.list.count == 0" class="alert alert-primary alert-icon" role="alert">
+                        <i class="uil uil-file-question"></i>{{msglabel.default.NoSubProductsFound}}
+                    </div>
+                    <app-pagination (changePage)="onPageChange($event)" *ngIf="subProductListData.list.count > 0"
+                        [pageSize]="6" [totalPages]="subProductListData.list.count"></app-pagination>
+                </div>
+            </div>
+        </div>
+        <app-enquiryform></app-enquiryform>
+
+    </section>
+</ng-container>

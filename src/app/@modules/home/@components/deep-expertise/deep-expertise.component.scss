@@ -1,0 +1,28 @@
+.exp-title{
+    color: #164194!important;
+    position: relative;
+}
+// .exp-title:after{
+//     content: '';
+//     background-image: url('/assets/img/arrow.png');
+//     bottom: -24px;
+//     background-size: contain;
+//     position: absolute;
+//     content: "";
+//     height: 30px;
+//     width: 100%;
+//     left: -1rem;
+//     bottom: -1.5rem;
+//     z-index: -1;
+//     background-attachment: scroll;
+//     background-position: bottom;
+//     background-repeat: no-repeat;
+//     padding-bottom: 8px;
+// }
+.exp-img{
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+}

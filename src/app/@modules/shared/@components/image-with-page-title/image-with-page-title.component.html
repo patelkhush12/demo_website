@@ -1,0 +1,17 @@
+<section class="wrapper image-wrapper bg-image bg-overlay text-white"
+  style="background-image: url(&quot;{{image}}&quot;); margin-top: 3rem;height: 15rem;">
+  <div class="video-wrap" *ngIf="video">
+    <video [src]="video" autoplay loop style="height: 15rem;width:100%;object-fit: cover;"></video>
+  </div>
+  <div class="container text-center d-flex align-items-center justify-content-center h-100" style="z-index: 15;">
+    <div class="row">
+      <div class="col-md-10 col-xl-8 mx-auto">
+        <div class="post-header">
+          <h1 class="display-1 mb-4 text-white">
+            {{title}}
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

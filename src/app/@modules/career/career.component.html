@@ -1,0 +1,131 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+  <section id="snippet-2" class="wrapper bg-light wrapper-border">
+    <div class="container pt-15">
+      <div class="row text-center">
+        <div class="col-xl-10 mx-auto">
+          <h2 class="fs-15 text-uppercase text-muted mb-3">Job Positions</h2>
+          <h3 class="display-4 mb-10 px-xxl-15">We’re always searching for amazing people to join our team. Take a look
+            at our current openings.</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-10 mx-auto">
+          <div id="accordion-3" class="accordion-wrapper">
+            <div class="card accordion-item" *ngFor="let career of careerData.career.results;let i=index;">
+              <div class="card-header" id="accordion-heading-3-1">
+                <span class="row">
+                  <span class="avatar text-white col-12 col-lg-1 col-md-1">
+                    <img class="w-10 h-10 p-1" style="border-radius: 50%;"
+                      [src]="'https://ui-avatars.com/api/?background=random&name='+career.title" [alt]="career.title">
+                  </span>
+                  <span class="mb-2 mb-md-0 d-flex align-items-center text-body col-12 col-lg-3 col-md-6">
+                    {{career.title}}
+                  </span>
+                  <span class="text-body d-flex align-items-center col-12 col-lg-3 col-md-6">
+                    <i class="uil uil-clock"></i> {{career.shift}} </span>
+                  <span class="text-body d-flex align-items-center col-12 col-lg-4 col-md-6">
+                    <i class="uil uil-location-arrow"></i> {{career.location}} </span>
+                  <span class="col-12 col-lg-1 col-md-6 d-flex align-items-center hide">
+                    <span style="cursor: pointer;" class="text-center text-body align-items-center" class="collapsed"
+                      data-bs-toggle="collapse" [attr.data-bs-target]="'#accordion-collapse-'+i" aria-expanded="false"
+                      aria-controls="accordion-collapse-3-1">
+                      <i class="uil uil-angle-right-b"></i>
+                    </span>
+                  </span>
+                </span>
+              </div>
+              <div [id]="'accordion-collapse-'+i" class="collapse" aria-labelledby="accordion-heading-3-1"
+                data-bs-target="#accordion-3">
+                <div class="card-body">
+                  <p class="px-6" [innerHTML]="career.description | safeHtml"></p>
+                  <a data-bs-toggle="modal" data-bs-target="#modal-02"
+                    class="btn btn-soft-leaf rounded-pill mb-2 mx-6">Apply now</a>
+                  <div class="modal fade" id="modal-02" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered modal-md">
+                      <div class="modal-content text-center">
+                        <div class="modal-body">
+                          <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          <h3>Apply here</h3>
+                          <div class="newsletter-wrapper">
+                            <div class="row">
+                              <div class="col-md-10 offset-md-1">
+                                <div id="mc_embed_signup">
+                                  <form class="contact-form needs-validation" method="post"
+                                    action="./assets/php/contact.php" novalidate="" [formGroup]="contactForm">
+                                    <div class="messages"></div>
+                                    <div class="row gx-4">
+                                      <div class="col-md-12">
+                                        <div class="form-floating mb-4">
+                                          <input id="form_name" type="text" name="name" class="form-control"
+                                            placeholder="Jane" required="" formControlName="name">
+                                          <label for="form_name">Name *</label>
+                                          <div class="valid-feedback"> Looks good! </div>
+                                          <div class="invalid-feedback"> Please enter your name. </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-12">
+                                        <div class="form-floating mb-4">
+                                          <input id="form_lastname" type="email" name="email" class="form-control"
+                                            placeholder="jane.doe@example.com" required="" formControlName="email">
+                                          <label for="form_lastname">Work Email *</label>
+                                          <div class="valid-feedback"> Looks good! </div>
+                                          <div class="invalid-feedback"> Please provide a valid email address. </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-12">
+                                        <div class="form-floating mb-4">
+                                          <input id="form_email" type="number" name="mobile" class="form-control"
+                                            placeholder="1234567890" required="" formControlName="mobile">
+                                          <label for="form_email">Mobile No. *</label>
+                                          <div class="valid-feedback"> Looks good! </div>
+                                          <div class="invalid-feedback"> Please provide a valid mobile number. </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-12">
+                                        <div class="form-floating mb-4">
+                                          <input class="form-control d-none" type="file" (change)="onChange($event)"
+                                            accept="application/pdf" #file>
+                                          <button (click)="file.click()" class="btn btn-primary">Select
+                                            Resume</button>
+                                          <span *ngIf="careerPdfFile" class="">Selected File:
+                                            {{careerPdfFile.name}}</span>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-12">
+                                        <div class="input-group mb-4">
+                                          <re-captcha
+                                            style="display:flex;transform:scale(1.0);-webkit-transform:scale(1.0);transform-origin:0 0;-webkit-transform-origin:0 0;"
+                                            name="recaptcha" formControlName="recaptcha">
+                                          </re-captcha>
+                                        </div>
+                                      </div>
+                                      <div class="col-12 text-center">
+                                        <input type="submit" class="btn btn-primary rounded-pill btn-send mb-3"
+                                          value="Send message" (click)="onSave(career.slug)" *ngIf="!formSubmitted">
+                                        <p class="text-muted" *ngIf="formSubmitted">Please wait ...</p>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <app-pagination (changePage)="onPageChange($event)" *ngIf="careerData.career.count > 0" [pageSize]="4"
+              [totalPages]="careerData.career.count"></app-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-life-at-ncircle [gallery]="apiData.gallery"></app-life-at-ncircle>
+
+  </section>
+</ng-container>

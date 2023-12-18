@@ -1,0 +1,340 @@
+.navbar {
+    transition: background-color 1s ease;
+}
+
+.dropdown-menu {
+    min-width: 11rem;
+
+}
+
+.dropdown-menu * {
+    color: black;
+}
+
+.dropdown-menu .nav-link:hover,
+.dropdown-menu .nav-link:focus,
+.dropdown-menu .nav-link {
+    color: black;
+}
+
+
+
+.margin {
+    // margin-top: 10px;
+
+    padding-right: 10px;
+}
+
+.navb {}
+
+.my-sidebar-show {
+    visibility: visible;
+    left: 0;
+}
+
+.offcanvas-footer {
+    display: flex;
+    flex-shrink: 0;
+    margin-top: auto;
+    padding: 1.5rem 0;
+}
+
+.offcanvas-header {
+    padding-bottom: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.6rem;
+}
+
+.offcanvas-nav .offcanvas-header .btn-close {
+    // margin-right: -0.75rem;
+}
+
+.offcanvas-header .btn-close {
+    margin-top: 1.1rem;
+    padding: 0.4rem;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+}
+
+.btn-close {
+    padding: 0 0;
+    color: #343f52;
+    background: 0 0;
+    border: 0;
+    line-height: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+
+@media only screen and (max-width: 992px) {
+    .my-sidebar {
+        height: 100vh;
+    }
+
+    .offcanvas-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1040;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(30, 34, 40, 0.7);
+    }
+
+    .text-color-white .dropdown-item {
+        color: white !important;
+    }
+
+    .form-select {
+        position: relative;
+    }
+}
+
+// Todo: montserrat
+.nav-link {
+    font-weight: 600;
+    // font-family: "Montserrat", sans-serif;
+
+}
+
+.btn {
+    font-weight: 600;
+}
+
+.dropdown-item {
+    font-weight: 600 !important;
+}
+
+.hide2 {
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+@media (min-width: 992px) {
+    .hide {
+        display: none;
+    }
+
+    .hide1 {
+        display: none !important;
+    }
+
+}
+
+@media (max-width: 992px) {
+    .hide1 {
+        display: visible
+    }
+
+    .hide2 {
+        display: none !important
+    }
+
+}
+
+// Todo: montserrat
+
+@media only screen and (max-width:1080px) {
+    .navbar .navbar-collapse .nav-link {
+        padding-right: 0.4rem;
+        padding-left: 0.4rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav .nav-link {
+        // padding-right: 0.8rem !important;
+        // padding-left: 1rem !important;
+    }
+}
+
+.goog-te-combo {
+    padding: 5px !important;
+
+
+}
+
+#google_translate_element {
+    margin-top: 20px;
+}
+
+@media (max-width: 767px) {
+    .hide2 {
+        display: block !important;
+
+    }
+
+    .rounded-pill {
+        // background-color: none !important;
+        background: none !important;
+
+    }
+
+    .btn {
+        padding: 0px !important;
+        border: none !important;
+    }
+
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.data {
+    top: 0%;
+    right: 80%;
+    padding: 1000px;
+}
+
+.abc {
+    display: block !important;
+}
+
+.xyz {
+    display: none !important;
+}
+
+.form-select {
+    // width: 185px !important;
+    // padding: 0.4rem 1rem;
+    // margin-left: 0.4rem;
+
+    width: 60px !important;
+    padding: 0.3rem 0.4rem;
+    margin-left: 0.4rem;
+}
+
+.navbar-nav:not(.sm-collapsible):not([data-sm-skip]) .dropdown-menu .dropdown-toggle::after {
+    font-size: .35rem;
+    top: 0 !important;
+    right: auto !important;
+    left: 3% !important;
+    margin: 0;
+    border: 0;
+    color: blue !important;
+    background-color: blue !important;
+}
+
+.abc {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    padding: 10px;
+}
+
+li:hover .abc {
+    display: block;
+}
+
+#service-dropdown {
+    .dropdown li:hover .dropdown-menu {
+        display: block;
+
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu {
+        display: none;
+    }
+}
+
+#sub-service-dropdown {
+    .dropdown li:hover .dropdown-menu {
+        display: block;
+
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu {
+        display: none;
+    }
+
+}
+
+@media (min-width: 360px) and (max-width: 767px) {
+    .form-select {
+        width: 150px !important;
+        padding: 0.4rem 1rem;
+        margin-left: 0.4rem;
+    }
+
+}
+
+.uil-bars {
+    font-size: 25px;
+}
+
+// width: 60px !important;
+//     padding: 0.3rem 0.4rem;
+//     margin-left: 0.4rem;

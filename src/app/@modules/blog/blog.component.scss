@@ -1,0 +1,17 @@
+
+
+.ql-align-right:after {
+    float: right;
+}
+
+@media (min-width: 992px) {
+    .hide {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .hide2 {
+        display: none;
+    }
+}

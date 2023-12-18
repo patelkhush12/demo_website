@@ -1,0 +1,133 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+    <!-- <app-header></app-header> -->
+
+    <section class="wrapper bg-light">
+        <div class="container py-16">
+            <div class="row gx-lg-8 gx-xl-12">
+                <div class="col-lg-8">
+                    <div class="webinar single">
+                        <div class="card">
+                            <figure class="card-img-top">
+                                <img [src]="apiData.detail.image" alt="" style="object-fit: contain;">
+                                <a [href]="apiData.detail.register_link" target="_blank" class="btn btn-primary"
+                                    *ngIf="apiData.detail.webinar_date | isEventUpcoming"
+                                    style="position: relative;bottom: 4rem;left: 1rem;">
+                                    Register
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <section class="wrapper bg-light" *ngIf="timeLeft.secondsToDday >= 0">
+                                    <div class="pb-5">
+                                        <div class="row">
+                                            <div class="col-12 w-100">
+                                                <div class="card image-wrapper bg-full bg-image bg-overlay"
+                                                    style="background-image: url(assets/img/banner/bg2.jpg);">
+                                                    <div class="card-body p-5">
+                                                        <div
+                                                            class="row align-items-center counter-wrapper gy-4 text-center text-white">
+                                                            <div class="col-6 col-lg-3">
+                                                                <h3 class="counter counter-lg text-white">
+                                                                    {{timeLeft.daysToDday}}</h3>
+                                                                <p>Days</p>
+                                                            </div>
+                                                            <div class="col-6 col-lg-3">
+                                                                <h3 class="counter counter-lg text-white">
+                                                                    {{timeLeft.hoursToDday}}</h3>
+                                                                <p>Hours</p>
+                                                            </div>
+                                                            <div class="col-6 col-lg-3">
+                                                                <h3 class="counter counter-lg text-white">
+                                                                    {{timeLeft.minutesToDday}}</h3>
+                                                                <p>Minutes</p>
+                                                            </div>
+                                                            <div class="col-6 col-lg-3">
+                                                                <h3 class="counter counter-lg text-white">
+                                                                    {{timeLeft.secondsToDday}}</h3>
+                                                                <p>Seconds</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <app-page-share></app-page-share>
+                                <div class="classic-view">
+                                    <article class="post">
+                                        <div class="post-content mb-5">
+                                            <h2 class="h1 mb-4">{{apiData.detail.title}}</h2>
+
+                                            <p #para class="mainpara"
+                                                [innerHTML]="apiData.detail.description | safeHtml"></p>
+                                        </div>
+                                        <div class="d-flex justify-content-start flex-wrap gap-5">
+                                            <div class="card" style="width: 100%;"
+                                                *ngFor="let host of apiData.detail.hosts">
+                                                <div class="card-body">
+                                                    <img class="rounded-circle w-15 mb-4" [src]="host.profile_image"
+                                                        alt="">
+                                                    <h4 class="mb-1">{{host.name}}</h4>
+                                                    <div class="meta mb-2">
+                                                        {{host.job_title}}
+                                                        <span
+                                                            style="text-transform: none;">({{host.company_name}})</span>
+                                                    </div>
+                                                    <p class="mb-2">{{host.description}}</p>
+                                                    <!-- <nav class="nav social mb-0">
+                                                        <a href="#"><i class="uil uil-twitter"></i></a>
+                                                        <a href="#"><i class="uil uil-facebook-f"></i></a>
+                                                        <a href="#"><i class="uil uil-dribbble"></i></a>
+                                                    </nav> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <app-bottom-bar-share-n-category [route]="'/webinar/'"
+                                            [categories]="apiData.detail.categories"></app-bottom-bar-share-n-category>
+                                    </article>
+
+                                </div>
+                                <hr>
+                                <app-detail-comment [comments]="apiData.comments"
+                                    [resourceUrl]="'/webinar/public_webinar_list/'+ apiData.detail.slug + '/comment/'">
+                                </app-detail-comment>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="col-lg-4 sidebar mt-11 mt-lg-6">
+                    <app-sidebar-search *ngIf="localstoragelanguage == 'EN' "
+                        [route]="'/' + localstoragelanguage +'/webinar/'" class="hide2"></app-sidebar-search>
+                    <app-sidebar-search *ngIf="localstoragelanguage == 'JP' "
+                        [route]="'/' + localstoragelanguage +'/webinar/'" class="hide2"></app-sidebar-search>
+                    <app-sidebar-search *ngIf="localstoragelanguage == 'IN' " [route]="'/'  +'/webinar/'"
+                        class="hide2"></app-sidebar-search> <app-sidebar-recent *ngIf="localstoragelanguage == 'EN'"
+                        [route]="'/' + localstoragelanguage +'/webinar/'" label="{{msglabel.default.RecentWebinar}}"
+                        [recentItem]="apiData.recent">
+                    </app-sidebar-recent>
+                    <app-sidebar-recent *ngIf="localstoragelanguage == 'JP'"
+                        [route]="'/' + localstoragelanguage +'/webinar/'" label="{{msglabel.default.RecentWebinar}}"
+                        [recentItem]="apiData.recent">
+                    </app-sidebar-recent>
+                    <app-sidebar-recent *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/webinar/'"
+                        label="{{msglabel.default.RecentWebinar}}" [recentItem]="apiData.recent">
+                    </app-sidebar-recent>
+                    <app-sidebar-categories *ngIf="localstoragelanguage == 'EN'"
+                        [route]="'/' + localstoragelanguage +'/webinar/'" [categories]="apiData.category.results">
+                    </app-sidebar-categories>
+                    <app-sidebar-categories *ngIf="localstoragelanguage == 'JP'"
+                        [route]="'/' + localstoragelanguage +'/webinar/'" [categories]="apiData.category.results">
+                    </app-sidebar-categories>
+                    <app-sidebar-categories *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/webinar/'"
+                        [categories]="apiData.category.results">
+                    </app-sidebar-categories>
+                    <app-side-banner-v1></app-side-banner-v1>
+                </aside>
+            </div>
+        </div>
+        <app-enquiryform></app-enquiryform>
+
+    </section>
+
+    <!-- <app-footer></app-footer> -->
+</ng-container>

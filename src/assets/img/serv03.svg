@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="57" height="42" viewBox="0 0 57 42">
+                                                    <g fill="none" fill-rule="evenodd">
+                                                        <path class="particle-atom queue-1 rectangle-main" fill="#06BB86" d="M0 3h57v39H0z"></path>
+                                                        <path class="particle-atom queue-2 rectangle-yellow" fill="#FDC82F" d="M7 8h32v5H7z"></path>
+                                                        <circle class="particle-atom queue-2 circle-blue" cx="49.5" cy="5.5" r="5.5" fill="#0062CE"></circle>
+                                                    </g>
+                                                </svg>

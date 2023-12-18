@@ -1,0 +1,84 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+  <app-image-with-page-title image="{{bannerData?.image}}" title="{{bannerData?.pagename}}">
+  </app-image-with-page-title>
+  <section class="wrapper bg-light">
+    <div class="container py-14 py-md-16">
+      <div class="row gx-lg-8 gx-xl-12">
+        <div class="col-lg-8">
+          <div class="hide">
+            <app-sidebar-search [route]="'/blogs/'"></app-sidebar-search>
+          </div>
+          <div class="blog grid grid-view">
+            <div class="row isotope gx-md-8 gy-8 mb-8">
+              <article class="item post col-md-6" style="cursor: pointer;" *ngFor="let item of blogListData.results">
+                <div class="card h-100">
+                  <figure class="card-img-top overlay overlay-1 hover-scale">
+                    <a (click)="getBlogLink(item.slug)" target="_blank">
+                      <img [src]="item.image ? item.image : blogDefaultImage" [alt]="item?.title" class="h-20"
+                        style="object-fit: cover;"><span class="bg"></span>
+                    </a>
+                  </figure>
+                  <div class="card-body px-3 px-sm-7">
+                    <div class="post-header">
+                      <!-- <h2 class="post-title h3 mt-1 mb-3"><a class="link-dark">{{item.title}}</a></h2> -->
+                      <h2 class="post-title h3 mt-1 mb-0"><a class="link-dark" (click)="getBlogLink(item.slug)"
+                          target="_blank">{{item?.title}}</a></h2>
+
+                    </div>
+                    <div class="post-content">
+                      <p [innerHTML]="item.description | truncateHtml:[150]"></p>
+                    </div>
+                  </div>
+                  <div class="card-footer px-3 px-sm-7">
+                    <ul class="post-meta d-flex mb-0">
+                      <li class="post-date"><i class="uil uil-calendar-alt"></i><span>{{item?.blog_date | date}}</span>
+                      </li>
+                      <li class="post-comments"><a><i class="uil uil-user"></i>
+                          {{item?.authors[0]?.name}}
+                        </a></li>
+                      <li class="post-likes ms-auto"><a><i class="uil uil-eye"></i>{{item?.views}}</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div *ngIf="blogListData.count == 0" class="alert alert-primary alert-icon" role="alert">
+            <i class="uil uil-file-question"></i> {{msglabel.default.NoBlogsFound}}
+          </div>
+          <app-pagination (changePage)="onPageChange($event)" *ngIf="blogListData.count > 0" [pageSize]="6"
+            [totalPages]="blogListData.count"></app-pagination>
+        </div>
+
+        <aside class="col-lg-4 sidebar">
+
+          <app-sidebar-search *ngIf="localstoragelanguage == 'EN'" [route]="'/' + localstoragelanguage +'/blogs/'"
+            class="hide2"></app-sidebar-search>
+          <app-sidebar-search *ngIf="localstoragelanguage == 'JP'" [route]="'/' + localstoragelanguage +'/blogs/'"
+            class="hide2"></app-sidebar-search>
+          <app-sidebar-search *ngIf="localstoragelanguage == 'IN'" [route]="'/' + '/blogs/'"
+            class="hide2"></app-sidebar-search>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'IN'" [route]="'/'+ '/blogs/'"
+            label="{{msglabel.default.RecentBlog}}" [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'EN'" [route]="'/' + localstoragelanguage + '/blogs/'"
+            label="{{msglabel.default.RecentBlog}}" [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'JP'" [route]="'/' + localstoragelanguage + '/blogs/'"
+            label="{{msglabel.default.RecentBlog}}" [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'EN'" [route]="'/' + localstoragelanguage +'/blogs/'"
+            [categories]="apiData.category.results"></app-sidebar-categories>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'JP'" [route]="'/' + localstoragelanguage +'/blogs/'"
+            [categories]="apiData.category.results"></app-sidebar-categories>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/blogs/'"
+            [categories]="apiData.category.results"></app-sidebar-categories>
+          <app-side-banner-v1></app-side-banner-v1>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+  <app-enquiryform></app-enquiryform>
+
+</ng-container>

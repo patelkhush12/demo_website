@@ -1,0 +1,118 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+    <section class="wrapper bg-soft-primary">
+        <div class="container pt-18 pb-15 pt-md-18 pb-md-16 text-center">
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <h1 class="display-1 mt-3">
+                        {{msglabel.default.SubProducts}}</h1>
+                    <p class="lead fs-lg text-center px-xl-0">{{msglabel.default.OurSubProducts}}</p>
+                    <!-- <nav class="d-inline-block" aria-label="breadcrumb">
+                        <ol class="breadcrumb d-flex">
+                            <li class="breadcrumb-item"><a routerLink="../">Sub Products</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{apiData.title}}</li>
+                        </ol>
+                    </nav> -->
+                    <div class="d-inline-block">
+                        <div class="d-none d-lg-block">
+                            <div class="d-flex">
+                                <p class=""><a (click)="navigateBackToSubProductList1()"
+                                        style="cursor: pointer;">{{msglabel.default.SubProducts}}</a>
+                                </p>
+                                <i class="uil uil-arrow-right"></i>
+                                <p class="active" aria-current="page">{{apiData.title}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-lg-none">
+                        <p class="mb-0"><a routerLink="../">{{msglabel.default.SubProducts}}</a></p>
+                        <i class="uil uil-arrow-down"></i>
+                        <p aria-current="page">{{apiData.title}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="wrapper bg-light">
+        <div class="container py-10">
+            <div class="row gx-lg-8 gx-xl-12">
+                <div class="col-lg-8">
+                    <div class="blog single">
+                        <div class="card">
+                            <div class="card-body px-3 px-sm-10">
+                                <div class="classic-view">
+                                    <article class="post">
+                                        <div class="post-content">
+                                            <p #para class="mainpara" [innerHTML]="apiData.description | safeHtml"></p>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="col-lg-4 sidebar mt-5 mt-lg-0">
+                    <article class="item post">
+                        <!-- <form class="widget">
+
+                            <select class=" form-select-wrapper form-select widget form-floating mb-5"
+                                formControlName="category" required="">
+                                <option>jidszfjsn
+                                </option>
+                            </select>
+
+                        </form> -->
+                        <div class="card h-100">
+                            <figure class="card-img-top overlay overlay-1 hover-scale">
+                                <a>
+                                    <img [src]="apiData.logo ? apiData.logo : subProductDefaultImage"
+                                        [alt]="apiData.title" class="h-20" style="object-fit: contain;"><span
+                                        class="bg"></span>
+                                </a>
+                            </figure>
+                            <div class="card-body px-3 px-sm-7">
+                                <div class="post-header">
+                                    <h2 class="post-title h3">{{apiData.title}}</h2>
+                                </div>
+                                <div *ngIf="hashversion">
+                                    <select class="form-select" required="" (change)="subproduct($event)">
+                                        <option value="">{{msglabel.default.ChooseyourRevitVersion}} </option>
+                                        <option *ngFor="let subversion of subversionlist" [value]="subversion.id">
+                                            {{subversion.version}} </option>
+                                    </select>
+
+                                </div>
+                                <div class="card-footer px-3 px-sm-7">
+                                    <div class="post-meta d-flex flex-column mb-0">
+                                        <span class="d-flex justify-content-between">
+                                            <span>{{msglabel.default.Version}}</span>
+                                            <span>{{productvirson?.version}}</span>
+                                        </span>
+                                        <span class="d-flex justify-content-between my-4">
+                                            <span>{{msglabel.default.ReleaseDate}}</span>
+                                            <span>{{productvirson?.release_date | date}}</span>
+                                        </span>
+                                        <span class="d-flex justify-content-between">
+                                            <span>{{msglabel.default.DownloadLink}}</span>
+                                            <a class="download-icon-wrap" target="_blank"
+                                                href="{{productvirson?.download_link}}">
+                                                <span>
+                                                    <img src="assets/img/icons/download.svg"
+                                                        class="svg-inject icon-svg icon-svg-sm text-primary"
+                                                        style="width: 1.2rem;height:1.2rem;" alt="" />
+                                                </span></a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a routerLink="/contact-us"
+                                class="btn btn-primary custom-btn-border-radius my-2 mx-2">{{msglabel.default.LetsConnect}}
+                            </a>
+                        </div>
+                    </article>
+                </aside>
+            </div>
+        </div>
+        <app-enquiryform></app-enquiryform>
+
+    </section>
+</ng-container>

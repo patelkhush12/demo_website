@@ -1,0 +1,39 @@
+<section class="wrapper image-wrapper bg-content">
+    <!--  pt-18 pb-16 -->
+    <div class="container ">
+        <h2 class="display-1 mt-10 mb-10 text-white">
+            {{msglabel.default.Testimonials}}
+        </h2>
+        <!-- <carousel [ngsReveal]="{'duration': 2000}" [cellWidth]="'100%'" class="upt-slider" style="height: 25rem"
+            [arrowsOutside]="false" [autoplay]="true">
+             -->
+        <swiper [config]="config" class="swiper-slider-hero position-relative d-block">
+            <div *ngFor="let item of testimonials" class="swiper-slide overflow-hidden" style="width: 100%;">
+                <!-- <div class="slide-inner">
+
+                    <p>
+                        {{item.content}}
+                    </p>
+                </div> -->
+                <p class="upt-testimonial lead fs-lg-lg mb-0 pe-xxl-10 text-white">
+                    {{item.content}}
+                </p>
+                <div class="mt-3 d-flex justify-content-end text-white">
+                    <div class="person-info">
+                        <span class="upt-testimonial-name">
+                            {{item.individual.name}}
+                        </span>
+                        <span class="upt-testimonial-position">
+                            {{item.individual.position}}
+                        </span>
+                        <span class="upt-testimonial-company">
+                            {{item.individual.company.name}}
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </swiper>
+        <!-- </carousel> -->
+    </div>
+</section>

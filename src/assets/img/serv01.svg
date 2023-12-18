@@ -1,0 +1,11 @@
+<svg width="50" height="62" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 62">
+                                                    <g fill="none" fill-rule="evenodd">
+                                                        <circle class="particle-atom queue-1 circle" fill="#0062CE" cx="23.5" cy="38.5" r="23.5"></circle>
+                    
+                                                        <path class="particle-atom queue-2 oval" fill="#06BB86" d="M42.523 19c-7.469 2.001-11.9 9.678-9.9 17.146 2.002 7.469 9.678 11.901 17.147 9.9"></path>
+                    
+                                                        <path class="particle-atom queue-2 triangle-small" fill="#FDC82F" d="M26.132 13.839l-7.425-2.475 4.95-4.95z"></path>
+                                                        <path class="particle-atom queue-2 triangle-big" fill="#FDC82F" d="M27.303 14.203L31.9.414l9.193 9.193z"></path>
+                    
+                                                    </g>
+                                                </svg>

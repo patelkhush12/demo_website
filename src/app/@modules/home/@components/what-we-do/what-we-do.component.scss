@@ -1,0 +1,39 @@
+.side-bg-img-01 {
+    position: relative;
+    right: 0.5rem;
+    top: 3rem;
+    z-index: 2;
+    z-index: -2;
+    height: fit-content;
+}
+.side-bg-img-02 {
+    position: relative;
+    right: -30rem;
+    height: fit-content;
+    bottom: 3rem;
+    z-index: -1;
+}
+@media only screen and (max-width: 480px) {
+    .side-bg-img-01,
+    .side-bg-img-02 {
+        display: none;
+    }
+}
+.frame {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+}
+.frame-content {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 2;
+}
+
+@media only screen and (max-width: 768px) {
+    .hide-icon {
+        display: none;
+    }
+}

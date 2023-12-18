@@ -1,0 +1,32 @@
+<!-- <section class="wrapper image-wrapper bg-image bg-overlay bg-overlay-400 bg-content text-white"
+style="background-image: url('assets/img/photos/bg4.jpg');min-height: 100vh;"> -->
+
+<!-- <section class="wrapper image-wrapper bg-content"> -->
+<!-- <div class="d-flex align-items-center" style="z-index: 5; position:relative;height: 100vh;"> -->
+<swiper style="z-index: 3;" [config]="config" class="swiper-slider-hero position-relative d-block vh-100">
+    <div class="swiper-slide d-flex align-items-center overflow-hidden" *ngFor="let d of slider;let i=index">
+        <div class="slide-inner slide-bg-image d-flex align-items-center h-100" style="width: 100%!important;"
+            style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('{{d.bg_image}}') center center / cover no-repeat;">
+            <div class="container">
+                <div class="row h-100" style="width: 100%!important;">
+                    <div
+                        class="col-md-10 offset-md-1 col-lg-10 offset-lg-0 text-center text-lg-start justify-content-center align-self-center align-items-start">
+                        <h1 class="slider-title mb-4 text-white">{{d.title}}</h1>
+                        <p class="lead fs-23 lh-sm mb-7 text-white">{{d.subtitle}}</p>
+                        <div>
+                            <a *ngIf="d.button_link | isExternalLink" target="_blank"
+                                (click)="redirectLink(d.button_link)"
+                                class="btn btn-lg btn-outline-white bg-white text-primary rounded-pill">{{d.button_label}}
+                            </a>
+                            <a *ngIf="!(d.button_link | isExternalLink)" (click)="redirectLink(d.button_link)"
+                                class="btn btn-lg btn-outline-white bg-white text-primary rounded-pill">{{d.button_label}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</swiper>
+<!-- </div> -->
+<!-- </section> -->

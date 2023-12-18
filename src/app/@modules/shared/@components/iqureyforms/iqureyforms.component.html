@@ -1,0 +1,83 @@
+<body>
+    <div class="container1">
+        <div class="chat-box">
+            <div class="client">
+                <img src="../../../../../assets/img/chatbot/chatbot/icons8-chat-message-64.png" alt="logo" />&nbsp;
+                <!-- <button class="send send-btn "  (click)="ring()">
+                    <i *ngIf="!isBellRinging" class="fa fa-bell" style="color: red; font-size: 30px; transform: rotation 50px;" aria-hidden="true"></i>
+                    <i  *ngIf="isBellRinging" class="fa fa-bell-slash-o" style="color:yellow ;font-size: 30px;" aria-hidden="true"></i>                                                        <i class="bi bi-bell-fill"></i>
+                  </button> -->
+                <!-- <img src="../../assets/images/chatbot/icons8-chat-message-64.png" alt="logo" /> -->
+                <!-- <img src="../../assets/images/chatbot/icons8-chat-message-64.png" alt="logo" /> -->
+
+                <div class="chatbthead">nCircle</div>
+                <div class="client-info">
+                    <!-- <p>online</p> -->
+                    <!-- <div > -->
+                                                    <!-- <img [src]="isBellRinging ? ringingBellImageUrl : bellImageUrl"> -->
+
+                                                   
+                                                                      </div>
+            </div>
+
+            <div class="msg_header">
+                <div id="msg" class="chats">
+
+                </div>
+                <div id="chat-bar-bottom"></div>
+            </div>
+
+
+
+            <div class="chat-input">
+                <div class="footer">
+                    
+                    <form class="input" [formGroup]="registerform">
+
+                        <input type="text" id="msg_send" formControlName="name" placeholder="Type here">
+                        <button class="send send-btn" id="reply" (click)="submitform($event)"
+                            onclick="document.getElementById('msg_send').value = ''"> <img
+                                src="../../../../../assets/img/chatbot/chatbot/send.png" alt="send">
+                            </button>
+                             
+                        </form>
+
+                </div>
+
+            </div>
+        </div>
+<!-- <div class="chat-box1"> -->
+    <div class="chat-input1">
+        <div class="footer">
+            
+            <form class="input" [formGroup]="registerform">
+
+                <input type="text" id="msg_send" formControlName="name" placeholder="Type here">
+                <button class="send send-btn" id="reply" (click)="submitform($event)"
+                    onclick="document.getElementById('msg_send').value = ''"> <img
+                        src="../../../../../assets/img/chatbot/chatbot/send.png" alt="send">
+                    </button>
+                     
+                </form>
+
+        </div>
+
+    </div>
+<!-- </div> -->
+        <div class="chat-btn" (click)="toggle()">
+            <img src="../../../../../assets/img/chatbot/chatbot/Circle-icons-chat.svg.png" alt="chat">
+            
+        </div>
+        <!-- <div class="chat-btn1" (click)="toggle1()" >
+            <img src="../../../../../assets/img/chatbot/chatbot/send.png" alt="chat">
+            
+        </div> -->
+
+    </div>
+
+</body>
+
+
+
+
+

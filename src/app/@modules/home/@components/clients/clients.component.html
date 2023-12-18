@@ -1,0 +1,31 @@
+<section class="client-wrap wrapper  pt-10">
+
+    <div class="container">
+        <div class="row gx-lg-8 gx-xl-12 gy-10 gy-lg-0 mb-10">
+            <div class="col-lg-4 mt-lg-2 d-flex flex-column justify-content-center">
+                <h3 class="display-1 mb-3 pe-xxl-5">{{msglabel.default.Clients}}</h3>
+                <p class="lead fs-lg mb-0 pe-xxl-5">
+
+                    {{msglabel.default.PreferredPartnerof}}
+                    <span class="underline">
+                        {{msglabel.default.IndustryExperts}}
+                    </span>
+                </p>
+            </div>
+            <div class="col-lg-8">
+                <div class="row row-cols-2 row-cols-md-4 gx-0 gx-md-8 gx-xl-12 gy-12">
+                    <div class="col d-flex align-items-center" ngsRevealSet [ngsInterval]="200"
+                        [ngsSelector]="'.animate-img'" *ngFor="let client of clients|slice:0:12">
+                        <figure class="animate-img px-3 px-md-0 px-xxl-2">
+                            <img [src]="client.logo" alt="">
+                        </figure>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="client-wrap container" [ngsReveal]="{'duration': 2000}">
+        <app-facts></app-facts>
+    </div>
+</section>

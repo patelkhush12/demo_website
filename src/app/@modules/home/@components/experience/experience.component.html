@@ -1,0 +1,23 @@
+<section class="wrapper image-wrapper bg-content">
+    <!-- pt-18 pb-16  -->
+    <div class="container ">
+        <h2 class="display-1 mt-lg-10 mb-5 text-white">
+            <!-- Creating Experiences that Matter -->
+            {{msglabel.default.OurExpertiseInBIM}}
+        </h2>
+        <div [ngsReveal]="{'duration': 2000}" class="row gx-lg-8 gx-xl-12 gy-8 world-wrapper">
+            <div class="col-md-6 col-lg-6 p-md-10" *ngFor="let item of experience">
+                <div class="d-flex flex-sm-row flex-column">
+                    <div class="mx-sm-auto">
+                        <!-- <i [class]="'my-icon '+ item.icon"></i> -->
+                        <img class="my-icon" style="width: 4rem;object-fit: contain;" [src]="item.icon" alt="">
+                    </div>
+                    <div>
+                        <h2 class="mb-1 text-white exp-title">{{item.title}}</h2>
+                        <p class="mb-0 text-white custom-p">{{item.subtitle}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

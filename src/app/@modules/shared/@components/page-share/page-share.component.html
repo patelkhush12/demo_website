@@ -1,0 +1,8 @@
+<div class="widget mb-2">
+  <p class="mb-1" style="font-weight: bold;">Spread the word</p>
+  <nav class="social">
+    <a href="javascript:void(0)" (click)="openSocialPopup(social)" *ngFor="let social of socialIcons">
+      <i [ngClass]="social.iconClass"></i>
+    </a>
+  </nav>
+</div>

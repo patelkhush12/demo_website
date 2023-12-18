@@ -1,0 +1,173 @@
+<footer class="bg-navy text-inverse">
+    <div class="container py-md-6">
+        <!-- <div class="d-lg-flex flex-row align-items-lg-center">
+            <h3 class="display-4 mb-6 mb-lg-0 pe-lg-20 pe-xl-22 pe-xxl-25 text-white">Join our community by using our
+                services and grow your business.</h3>
+            <a href="#" class="btn btn-primary rounded-pill mb-0 text-nowrap">Try It For Free</a>
+        </div> -->
+        <!--/div -->
+        <!-- <hr class="mt-11 mb-12" /> -->
+        <div class="row gy-6 gy-lg-0 pb-5">
+            <div class="col-lg-3 col-md-6">
+                <div class="widget">
+                    <!-- <img class="mb-4" src="img/logo-light.png"   alt="" /> -->
+                    <p class="mb-4">© {{currentYear}} {{msglabel.default.nCircleTech}} <br
+                            class="d-none d-lg-block" />{{msglabel.default.Allrightsreserved}}
+                    </p>
+                    <nav class="nav social social-white mb-4">
+                        <a target="_blank" [href]="si.link" *ngFor="let si of socialLinks"><i
+                                [class]="'uil uil-'+si.icon"></i></a>
+                    </nav>
+                    <!-- /.social -->
+                    <p class="subtext"> {{msglabel.default.SubscribeourAnnualNewsletter}}</p>
+                    <form id="mc-embedded-subscribe-form2" name="mc-embedded-subscribe-form"
+                        class="validate dark-fields" target="_blank" novalidate [formGroup]="subscribeForm">
+                        <div id="mc_embed_signup_scroll2">
+
+                            <div class="mc-field-group input-group form-label-group" style="width: 80%;">
+                                <input autocomplete="off" type="email" value="" name="EMAIL"
+                                    class="required email form-control" placeholder="Email Address" id="mce-EMAIL2"
+                                    formControlName="email">
+                                <label for="mce-EMAIL2">{{msglabel.default.EmailAddress}}</label>
+                                <button type="submit" name="subscribe" id="mc-embedded-subscribe2"
+                                    [disabled]="joinFormSubmit || subscribeForm.invalid" class="btn btn-primary"
+                                    (click)="join()" *ngIf="localstoragelanguage == 'EN'">
+                                    {{joinFormSubmit ? 'Please Wait' : 'Join'}}
+                                </button>
+                                <button type="submit" name="subscribe" id="mc-embedded-subscribe2"
+                                    [disabled]="joinFormSubmit || subscribeForm.invalid" class="btn btn-primary"
+                                    (click)="join()" *ngIf="localstoragelanguage == 'IN'">
+                                    {{joinFormSubmit ? 'Please Wait' : 'Join'}}
+                                </button>
+                                <button type="submit" name="subscribe" id="mc-embedded-subscribe2"
+                                    [disabled]="joinFormSubmit || subscribeForm.invalid" class="btn btn-primary"
+                                    (click)="join()" *ngIf="localstoragelanguage == 'JP'">
+                                    {{joinFormSubmit ? 'お待ちください' : '加入'}}
+                                </button>
+                            </div>
+                            <div class="mt-2">
+                                <re-captcha
+                                    style="display:flex;transform:scale(0.8);-webkit-transform:scale(0.8);transform-origin:0 0;-webkit-transform-origin:0 0;"
+                                    name="recaptcha" formControlName="recaptcha"> </re-captcha>
+                            </div>
+                            <div id="mce-responses2" class="clear">
+                                <div class="response" id="mce-error-response2" style="display:none"></div>
+                                <div class="response" id="mce-success-response2" style="display:none"></div>
+                            </div>
+                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+                                    name="b_ddc180777a163e0f9f66ee014_4b1bcfa0bc" tabindex="-1" value=""></div>
+                            <div class="clear"></div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.widget -->
+            </div>
+            <!-- /column -->
+            <!-- <div class="col-md-4 col-lg-3">
+                <div class="widget">
+                    <h4 class="widget-title text-white mb-3">Get in Touch</h4>
+                    <address class="pe-xl-15 pe-xxl-17">
+                        Office No.3 , 
+                        4th floor, Bldg No. IT-7, Qubix SEZ, Blue Ridge, Plot No.2, 
+                        Hinjewadi Phase - 1, Pune- 411057
+                    </address>
+                    <a href="mailto:#">info@email.com</a><br /> +00 (123) 456 78 90
+                </div> 
+            </div> -->
+            <!-- /column -->
+            <div class="col-lg-3 col-md-6">
+                <div class="widget">
+                    <h4 class="widget-title text-white mb-3">{{msglabel.default.ProductStore}}</h4>
+                    <ul class="list-unstyled mb-0" *ngIf="localstoragelanguage == 'EN'">
+                        <li *ngFor="let i of products | slice:0:4">
+                            <a [href]="i.url" *ngIf="i.sub_product.length==0 && i.url.length != 0" style="font-size: .8rem;
+                            font-weight: 400;
+                            color: #c6c7ca;" target="_blank">{{i.title}}</a>
+                            <a [routerLink]="localstoragelanguage +'/products-store/'+i.slug"
+                                *ngIf="i.sub_product.length>0" style="font-size: .8rem;
+                            font-weight: 400;
+                            color: #c6c7ca;">{{i.title}}</a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled mb-0" *ngIf="localstoragelanguage == 'JP'">
+                        <li *ngFor="let i of products | slice:0:4">
+                            <a [href]="i.url" *ngIf="i.sub_product.length==0 && i.url.length != 0" style="font-size: .8rem;
+                            font-weight: 400;
+                            color: #c6c7ca;" target="_blank">{{i.title}}</a>
+                            <a [routerLink]="localstoragelanguage +'/products-store/'+i.slug"
+                                *ngIf="i.sub_product.length>0" style="font-size: .8rem;
+                            font-weight: 400;
+                            color: #c6c7ca;">{{i.title}}</a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled mb-0" *ngIf="localstoragelanguage == 'IN'">
+                        <li *ngFor="let i of products | slice:0:4">
+                            <a [href]="i.url" *ngIf="i.sub_product.length==0 && i.url.length != 0" style="font-size: .8rem;
+                            font-weight: 400;
+                            color: #c6c7ca;" target="_blank">{{i.title}}</a>
+                            <a [routerLink]=" '/products-store/'+i.slug" *ngIf="i.sub_product.length>0" style="font-size: .8rem;
+                            font-weight: 400;
+                            color: #c6c7ca;">{{i.title}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="widget">
+                    <h4 class="widget-title text-white mb-3">{{msglabel.default.OurServices}}</h4>
+                    <ul class="list-unstyled mb-0" *ngIf="localstoragelanguage == 'EN'">
+                        <li *ngFor="let i of services | slice:0:4">
+                            <a style="font-size: .8rem;
+                            font-weight: 400;
+                            color: #c6c7ca;" [routerLink]="localstoragelanguage + '/services/'+i.slug">{{i.title}}</a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled mb-0" *ngIf="localstoragelanguage == 'JP'">
+                        <li *ngFor="let i of services | slice:0:4">
+                            <a style="font-size: .8rem;
+                            font-weight: 400;
+                            color: #c6c7ca;" [routerLink]="localstoragelanguage + '/services/'+i.slug">{{i.title}}</a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled mb-0" *ngIf="localstoragelanguage == 'IN'">
+                        <li *ngFor="let i of services | slice:0:4">
+                            <a style="font-size: .8rem;
+                            font-weight: 400;
+                            color: #c6c7ca;" [routerLink]=" '/services/'+i.slug">{{i.title}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="widget">
+                    <!-- <div class="pb-sm-8"></div> -->
+                    <h4 class="widget-title text-white mb-3">{{msglabel.default.AboutUs}}</h4>
+                    <ul class="list-unstyled mb-0" *ngIf="localstoragelanguage == 'EN'">
+                        <li *ngFor="let i of aboutUsEN | slice:0:4">
+                            <a style="font-size: .8rem;
+                            font-weight: 400;
+                            color: #c6c7ca;" [routerLink]="localstoragelanguage + '/' +i.routerLink">{{i.title}}</a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled mb-0" *ngIf="localstoragelanguage == 'IN'">
+                        <li *ngFor="let i of aboutUsEN | slice:0:4">
+                            <a style="font-size: .8rem;
+                            font-weight: 400;
+                            color: #c6c7ca;" [routerLink]=" '/' +i.routerLink">{{i.title}}</a>
+                        </li>
+                    </ul>
+
+                    <ul class="list-unstyled mb-0" *ngIf="localstoragelanguage == 'JP'">
+                        <li *ngFor="let i of aboutUsJP | slice:0:4">
+                            <a style="font-size: .8rem;
+                            font-weight: 400;
+                            color: #c6c7ca;" [routerLink]="localstoragelanguage + '/' +i.routerLink">{{i.title}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

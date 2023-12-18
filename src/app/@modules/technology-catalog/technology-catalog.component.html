@@ -1,0 +1,33 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+  <section class="wrapper bg-light">
+    <app-image-with-page-title image="{{bannerData?.image}}" title="{{bannerData?.pagename}}">
+    </app-image-with-page-title>
+    <div class="container py-16">
+      <div class="row text-center">
+        <div class="col-xl-10 mx-auto">
+          <h2 class="fs-15 text-uppercase text-primary mb-3">{{msglabel.default.WhatWeDo}}</h2>
+          <h3 class="display-4 mb-10 px-xxl-15">{{msglabel.default.OurTechnologyCatalog}}</h3>
+        </div>
+      </div>
+      <div class="row gy-6">
+        <div class="col-md-6 col-lg-4" *ngFor="let tech of techCatalogListData.results">
+          <a class="card1 h-100">
+            <h3>{{tech?.title}}</h3>
+            <ng-container *ngFor="let tag of tech.tags">
+              <span class="badge bg-pale-blue text-blue rounded py-1 mb-2 mx-1">{{tag?.name}}</span>
+            </ng-container>
+            <div class="go-corner"></div>
+          </a>
+        </div>
+        <div *ngIf="techCatalogListData.count == 0" class="alert alert-primary alert-icon" role="alert">
+          <i class="uil uil-file-question"></i> {{msglabel.default.NoTechnologyCatalogFound}}
+        </div>
+        <app-pagination (changePage)="onPageChange($event)" *ngIf="techCatalogListData.count > 0" [pageSize]="6"
+          [totalPages]="techCatalogListData.count" style="margin: 12px;" class="mt-10"></app-pagination>
+      </div>
+    </div>
+    <app-enquiryform></app-enquiryform>
+
+  </section>
+
+</ng-container>

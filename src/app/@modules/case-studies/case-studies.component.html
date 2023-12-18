@@ -1,0 +1,105 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+  <app-image-with-page-title image="{{bannerData?.image}}" title="{{bannerData?.pagename}}">
+  </app-image-with-page-title>
+  <section class="wrapper bg-light">
+    <div class="container py-14 py-md-16">
+      <div class="row gx-lg-8 gx-xl-12">
+        <div class="col-lg-8">
+          <div class="hide">
+            <app-sidebar-search [route]="'/case-studies/'"></app-sidebar-search>
+          </div>
+          <div class="blog classic-view">
+            <article class="post" *ngFor="let item of caseStudyListData?.results">
+              <div class="card">
+                <figure class="card-img-top overlay overlay-1 hover-scale"><a (click)="getBlogLink(item.slug)"
+                    target="_blank">
+                    <img style="object-fit: cover;height: 20rem!important;" [src]="item?.image" alt="">
+                    <!-- <a>
+                      <img [src]="item.image ? item.image : blogDefaultImage" [alt]="item.title" class="h-20"
+                        style="object-fit: cover;"><span class="bg"></span>
+                    </a> -->
+
+                    <span class="bg"></span></a>
+                </figure>
+                <!-- <figure class="card-img-top overlay overlay-1 hover-scale">
+                  <a>
+                    <img [src]="item.image ? item.image : blogDefaultImage" [alt]="item.title" class="h-20"
+                      style="object-fit: cover;"><span class="bg"></span>
+                  </a>
+                </figure> -->
+
+                <div class="card-body px-3 px-sm-7">
+                  <!-- <figure class="card-img-top overlay overlay-1 hover-scale">
+                    <a>
+                      <img [src]="item.image ? item.image : blogDefaultImage" [alt]="item.title" class="h-20"
+                        style="object-fit: cover;"><span class="bg"></span>
+                    </a>
+                  </figure> -->
+
+                  <div class="post-header ">
+                    <!-- <h2 class="post-title mt-1 mb-0"><a class="link-dark">{{item.title}}</a> -->
+                    <h2 class="post-title h3 mt-1 mb-0"><a class="link-dark" (click)="getBlogLink(item.slug)"
+                        target="_blank">{{item?.title}}</a></h2>
+                  </div>
+                  <div class="post-content">
+                    <p [innerHTML]="item?.description | truncateHtml:[150]"></p>
+                  </div>
+                </div>
+                <div class="card-footer px-3 px-sm-7">
+                  <ul class="post-meta d-flex mb-0">
+                    <li class="post-date"><i class="uil uil-calendar-alt"></i><span>{{item?.casestudy_date |
+                        date}}</span>
+                    </li>
+                    <li class="post-author" *ngFor="let i of item.authors"><a><i
+                          class="uil uil-user"></i><span>{{i?.name}}</span></a>
+                    </li>
+                    <li class="post-likes ms-auto"><a><i class="uil uil-eye"></i>{{item?.views}}</a></li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div *ngIf="caseStudyListData.count == 0" class="alert alert-primary alert-icon" role="alert">
+            <i class="uil uil-file-question"></i> {{msglabel.default.NoCaseStudyFound}}
+          </div>
+          <app-pagination (changePage)="onPageChange($event)" *ngIf="caseStudyListData.count > 0" [pageSize]="3"
+            [totalPages]="caseStudyListData.count"></app-pagination>
+        </div>
+        <aside class="col-lg-4 sidebar mt-8 mt-lg-0">
+          <app-sidebar-search *ngIf="localstoragelanguage == 'EN'"
+            [route]="'/' + localstoragelanguage +'/case-studies/'" class="hide2"></app-sidebar-search>
+          <app-sidebar-search *ngIf="localstoragelanguage == 'JP'"
+            [route]="'/' + localstoragelanguage +'/case-studies/'" class="hide2"></app-sidebar-search>
+          <app-sidebar-search *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/case-studies/'"
+            class="hide2"></app-sidebar-search>
+
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'EN'"
+            [route]="'/' + localstoragelanguage +'/case-studies/'" label="{{msglabel.default.RecentCaseStudy}}"
+            [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'JP'"
+            [route]="'/' + localstoragelanguage +'/case-studies/'" label="{{msglabel.default.RecentCaseStudy}}"
+            [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/case-studies/'"
+            label="{{msglabel.default.RecentCaseStudy}}" [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'EN'"
+            [route]="'/' + localstoragelanguage +'/case-studies/'" [categories]="apiData.categories.results">
+          </app-sidebar-categories>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'JP'"
+            [route]="'/' + localstoragelanguage +'/case-studies/'" [categories]="apiData.categories.results">
+          </app-sidebar-categories>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/case-studies/'"
+            [categories]="apiData.categories.results">
+          </app-sidebar-categories>
+          <app-side-banner-v1></app-side-banner-v1>
+        </aside>
+      </div>
+    </div>
+    <app-enquiryform></app-enquiryform>
+
+  </section>
+
+</ng-container>

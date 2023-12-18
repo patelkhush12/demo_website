@@ -1,0 +1,203 @@
+<ng-container>
+    <!-- <app-header></app-header> -->
+    <!-- <section class="wrapper bg-gray">
+        <div class="container py-12 pb-md-16 pt-md-19 text-center">
+            <div class="row">
+                <div class="col-lg-10 col-xxl-8 mx-auto">
+                    <h1 class="display-1 mb-3">Our Story</h1>
+                    <p class="lead mb-1">Our Clients</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
+    <app-image-with-page-title image="{{bannerData?.image}}" title="{{bannerData?.pagename}}">
+    </app-image-with-page-title>
+    <div class="container">
+        <div class="demos-wrapper" *ngFor="let brand of brands">
+            <!-- brands start -->
+            <div class="demo mb-10 mt-10">
+                <div class="card bg-soft-fuchsia" style="background-color: #f3f3fa!important">
+                    <div class="card-body px-4 px-md-8 ps-xl-12 py-0 overflow-hidden">
+                        <div class="row gx-md-8 gx-xl-12 d-flex align-items-center">
+                            <div class="col-lg-7">
+                                <div class="row gx-4 gx-md-7">
+                                    <div class="col-md-6 col-12">
+                                        <figure class="itooltip itooltip-fuchsia mt-9"><a target="_blank"><img
+                                                    class="shadow-lg rounded" style="object-fit: contain;"
+                                                    [src]="brand?.sec1_image1" alt=""></a></figure>
+                                        <!-- <img [src]="brand.sec1_image1" class="svg-inject icon-svg icon-svg-md text-yellow mb-3"  alt="" /> -->
+
+                                    </div>
+                                    <div class="col-6 hide-icon">
+                                        <figure class="itooltip itooltip-fuchsia"><a target="_blank"><img
+                                                    class="shadow-lg rounded" [src]="brand?.sec1_image2" alt=""></a>
+                                        </figure>
+                                        <!-- <img [src]="brand.sec1_image2" class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" /> -->
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 mt-5 mt-lg-0">
+                                <h2 class="post-title fs-30 mb-4">
+                                    <!-- Our Brand Identity -->
+                                    {{brand?.sec1_title}}
+                                </h2>
+                                <p class="mb-5" #para class="mainpara" [innerHTML]="brand.sec1_description | safeHtml">
+                                </p>
+
+                                <!-- <p> -->
+                                <!-- The name nCircle represents circles of connections, like Family circle, friend
+                                    circle,
+                                    business circle, inner circle and circle of trust. The two circles combine to form
+                                    the
+                                    infinity symbol and N acts as the multiplier. nCircle stands for the power of
+                                    merging
+                                    circles of employees, clients and partners with nCircle to unlock infinite
+                                    possibilities. -->
+                                <!-- {{brand.sec1_description}} -->
+                                <!-- </p> -->
+                                <!-- <ul class="icon-list bullet-fuchsia row ms-0 gy-2">
+                            <li class="col-md-6"><span><i class="uil uil-check"></i></span><span>Agency, Startup</span>
+                            </li>
+                            <li class="col-md-6"><span><i class="uil uil-check"></i></span><span>Gradient image</span>
+                            </li>
+                            <li class="col-md-6"><span><i class="uil uil-check"></i></span><span>SVG icons</span></li>
+                            <li class="col-md-6"><span><i class="uil uil-check"></i></span><span>Colorful design</span>
+                            </li>
+                        </ul>
+                        <a target="_blank" class="btn btn-sm btn-fuchsia rounded-pill mt-1">See
+                            Demo</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- brands end -->
+            <!-- evalution start -->
+            <div class="demo mb-10 mt-10">
+                <div class="card bg-soft-fuchsia" style="background-color: #f3fafe!important">
+                    <div class="card-body px-4 px-md-8 ps-xl-12 py-0 overflow-hidden">
+                        <div class="row gx-md-8 gx-xl-12 d-flex align-items-center">
+                            <div class="col-lg-12">
+                                <h2 class="post-title fs-30 mb-4 mt-4">
+                                    <!-- The Evolution of nCircle Tech -->
+                                    {{brand?.sec2_title}}
+                                </h2>
+                                <!-- <p class="mb-5" [innerHTML]="brand.sec2_description | safeHtml"></p> -->
+                                <p class="mb-5" #para class="mainpara" [innerHTML]="brand?.sec2_description | safeHtml">
+                                </p>
+
+                                <!-- <p> -->
+                                <!-- Our journey to create a world-class 3D engineering software company began in 2012.
+                                    This journey has been immensely fulfilling and humbling at the same time. With 125+
+                                    committed and driven team members we have served more than 50 clients in the AEC and
+                                    manufacturing engineering industry across the globe. An intricate understanding and
+                                    creative implementation of client’s needs and requirements has made us the leading
+                                    domain expert and solutions provider in the CAD-BIM industry.
+                                    <br>
+                                    <br>
+                                    The start of the next phase of our independent growth is built on the confidence and
+                                    consistency of delivering beyond client expectations and a culture of quick learning
+                                    and responsive R&D.
+                                    <br>
+                                    <br>
+                                    We believe that we are well placed to navigate the road ahead with the support of
+                                    our circle of customers, employees and partners. These stakeholders are critical to
+                                    fuel our pursuit of creating impactful products and providing delightful services.
+                                    As such, it remains business as usual for our existing clients and partners while
+                                    very soon, we will add a host of new services and technology offerings to our
+                                    portfolio.
+                                    <br>
+                                    <br>
+                                    One such important step in the right direction is the on-boarding of industry
+                                    veteran Manu Parpia (Founder; Geometric), as advisor to nCircle. With his wealth of
+                                    experience, network and knowledge, we believe we can scale to new heights of
+                                    sustainable growth in existing industry verticals and beyond.
+                                    <br>
+                                    <br>
+                                    In recent years, with an advent of machine learning and artificial intelligence in
+                                    AEC industry, nCircle has spearheaded many of its clients with innovative
+                                    construction services with engineering excellence, revolution, and reliability. Our
+                                    machine learning expertise, comprehensive portfolio and long-standing experience
+                                    helping our customers to pioneer a sustainable future with state-of-the-art
+                                    innovative solutions in fields including architecture, engineering and construction. -->
+                                <!-- {{brand.sec2_description}}
+                                </p> -->
+                                <!-- <ul class="icon-list bullet-fuchsia row ms-0 gy-2">
+                            <li class="col-md-6"><span><i class="uil uil-check"></i></span><span>Agency, Startup</span>
+                            </li>
+                            <li class="col-md-6"><span><i class="uil uil-check"></i></span><span>Gradient image</span>
+                            </li>
+                            <li class="col-md-6"><span><i class="uil uil-check"></i></span><span>SVG icons</span></li>
+                            <li class="col-md-6"><span><i class="uil uil-check"></i></span><span>Colorful design</span>
+                            </li>
+                        </ul>
+                        <a target="_blank" class="btn btn-sm btn-fuchsia rounded-pill mt-1">See
+                            Demo</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="demo mb-10 mt-10">
+                <div class="card bg-soft-fuchsia" style="background-color: #f3f3fa!important">
+                    <div class="card-body px-4 px-md-8 ps-xl-12 py-0 overflow-hidden">
+                        <div class="row gx-md-8 gx-xl-12 d-flex align-items-center">
+                            <div class="col-lg-7">
+                                <h2 class="post-title fs-30 mb-4 mt-4 ">
+                                    {{brand?.sec3_title}}
+                                </h2>
+                                <p class="mb-5" #para class="mainpara" [innerHTML]="brand?.sec3_description | safeHtml">
+                                </p>
+
+                                <!-- <p> -->
+                                <!-- We believe that we are well placed to navigate the road ahead with the support of
+                                    our circle of customers, employees and partners. These stakeholders are critical to
+                                    fuel our pursuit of creating impactful products and providing delightful services.
+                                    As such, it remains business as usual for our existing clients and partners while
+                                    very soon, we will add a host of new services and technology offerings to our
+                                    portfolio.
+                                    <br>
+                                    <br>
+                                    One such important step in the right direction is the on-boarding of industry
+                                    veteran Manu Parpia (Founder; Geometric), as advisor to nCircle. With his wealth of
+                                    experience, network and knowledge, we believe we can scale to new heights of
+                                    sustainable growth in existing industry verticals and beyond. -->
+                                <!-- {{brand.sec3_description}}
+                                </p> -->
+                            </div>
+                            <div class="col-lg-5 mb-5 mt-lg-0">
+                                <div class="row gx-4 gx-md-7">
+                                    <div class="col-md-6 col-12">
+                                        <figure class="itooltip itooltip-fuchsia mt-9"><a target="_blank"><img
+                                                    class="shadow-lg rounded" style="object-fit: contain;"
+                                                    [src]="brand?.sec3_image1" alt=""></a></figure>
+                                        <!-- <img [src]="brand.sec3_image1"
+                                            class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" /> -->
+
+                                    </div>
+                                    <div class="col-6 hide-icon">
+                                        <figure class="itooltip itooltip-fuchsia"><a target="_blank"><img
+                                                    class="shadow-lg rounded" [src]="brand?.sec3_image2" alt=""></a>
+                                        </figure>
+
+                                        <!-- <img [src]="brand.sec3_image2"
+                                            class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" /> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-life-at-ncircle *ngIf="apiData$ | async as apiData" [gallery]="apiData?.gallery">
+
+    </app-life-at-ncircle>
+    <app-enquiryform></app-enquiryform>
+
+
+</ng-container>

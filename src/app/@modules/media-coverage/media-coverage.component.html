@@ -1,0 +1,82 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+  <app-image-with-page-title image="{{bannerData?.image}}" title="{{bannerData?.pagename}}">
+  </app-image-with-page-title>
+  <section class="wrapper bg-light">
+    <div class="container py-14 py-md-16">
+      <div class="row gx-lg-8 gx-xl-12">
+        <div class="col-lg-8">
+          <div class="hide">
+            <app-sidebar-search [route]="'/media-coverage/'"></app-sidebar-search>
+          </div>
+          <div class="blog grid grid-view">
+            <div class="row isotope gx-md-8 gy-8 mb-8">
+              <article *ngFor="let item of newsListData.results">
+                <figure class="overlay overlay-1 hover-scale rounded mb-5">
+                  <a (click)="getBlogLink(item.slug)" target="_blank"> <img [src]="item?.image"
+                      [alt]="item?.title"><span class="bg"></span></a>
+                </figure>
+                <div class="post-header">
+                  <h2 class="post-title h3 mt-1 mb-3">
+                    <!-- <a [routerLink]="item.slug" class="link-dark">{{item.title |
+                      truncateHtml:[150]}}</a> -->
+                    <a [routerLink]="item?.slug" class="link-dark" (click)="getBlogLink(item.slug)"
+                      target="_blank">{{item.title |
+                      truncateHtml:[150]}}</a>
+
+                  </h2>
+                </div>
+                <div class="post-footer">
+                  <ul class="post-meta mb-0">
+                    <li class="post-comments" *ngFor="let author of item.authors">
+                      <a><i class="uil uil-user"></i>{{author?.name}}</a>
+                    </li>
+                    <li class="post-date"><i class="uil uil-calendar-alt"></i><span>{{item.created_at | date}}</span>
+                    </li>
+                    <li class="post-comments"><a><i class="uil uil-eye"></i>{{item?.views}}</a></li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div *ngIf="newsListData.count == 0" class="alert alert-primary alert-icon" role="alert">
+            <i class="uil uil-file-question"></i> {{msglabel.default.NoMediaCoverageFound}}
+          </div>
+          <app-pagination (changePage)="onPageChange($event)" *ngIf="newsListData.count > 0" [pageSize]="2"
+            [totalPages]="newsListData.count"></app-pagination>
+        </div>
+        <aside class="col-lg-4 sidebar mt-8 mt-lg-0">
+          <app-sidebar-search *ngIf="localstoragelanguage == 'EN'"
+            [route]="'/' + localstoragelanguage +'/media-coverage/'" class="hide2"></app-sidebar-search>
+          <app-sidebar-search *ngIf="localstoragelanguage == 'JP'"
+            [route]="'/' + localstoragelanguage +'/media-coverage/'" class="hide2"></app-sidebar-search>
+          <app-sidebar-search *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/media-coverage/'"
+            class="hide2"></app-sidebar-search>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'EN'"
+            [route]="'/' + localstoragelanguage +'/media-coverage/'" label="{{msglabel.default.RecentMediaCoverage}}"
+            [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'JP'"
+            [route]="'/' + localstoragelanguage +'/media-coverage/'" label="{{msglabel.default.RecentMediaCoverage}}"
+            [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/media-coverage/'"
+            label="{{msglabel.default.RecentMediaCoverage}}" [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'EN'"
+            [route]="'/' + localstoragelanguage +'/media-coverage/'" [categories]="apiData.category.results">
+          </app-sidebar-categories>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'JP'"
+            [route]="'/' + localstoragelanguage +'/media-coverage/'" [categories]="apiData.category.results">
+          </app-sidebar-categories>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/media-coverage/'"
+            [categories]="apiData.category.results">
+          </app-sidebar-categories>
+          <app-side-banner-v1></app-side-banner-v1>
+        </aside>
+      </div>
+    </div>
+    <app-enquiryform></app-enquiryform>
+
+  </section>
+
+</ng-container>

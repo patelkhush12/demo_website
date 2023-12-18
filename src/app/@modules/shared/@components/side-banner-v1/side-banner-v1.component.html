@@ -1,0 +1,178 @@
+<div class="widget bg-yellow p-5 my-5">
+  <h4 class="widget-title mb-3">
+    {{msglabel.default.nCircleisaonestop2D3DProductdevelopmentstudioforAECandManufacturing}}
+  </h4>
+  <p class="text-dark">
+    {{msglabel.default.HavingworkedwithSoftwarecompaniesinConstructionandManufacturingfor}}
+    <b>
+      {{msglabel.default.years}}
+    </b>
+    {{msglabel.default.andhavingsuccessfullydevelopedover}}
+    <b>
+      {{msglabel.default.client}}
+    </b>
+    {{msglabel.default.products}}
+
+  </p>
+
+  <h5 class="widget-title mb-3">{{msglabel.default.Weoffer}}</h5>
+
+
+
+
+  <ul class="icon-list bullet-primary row ms-0 gy-2 text-dark">
+    <li class="col-md-12"><span><i
+          class="uil uil-check"></i></span><span>{{msglabel.default.Dedicateddevelopmentteamstoaugmentyourcapacity}}</span>
+    </li>
+    <li class="col-md-12"><span><i
+          class="uil uil-check"></i></span><span>{{msglabel.default.EndtoendProductdevelopmentondesktopmobilecloud}}</span>
+    </li>
+    <li class="col-md-12"><span><i
+          class="uil uil-check"></i></span><span>{{msglabel.default.InnovativeapproachusingMachinelearningandAI}}</span>
+    </li>
+  </ul>
+  <!-- <a data-bs-toggle="modal" data-bs-target="#modal-03" class="btn btn-sm rounded-pill mt-1 text-white"
+    style="background-color: #22252a;">
+    {{msglabel.default.GetAQuoteBookaMeeting}}
+  </a> -->
+
+  <!-- <a href="#" class="btn btn-primary rounded-pill mx-1 mb-2 mb-md-0">Subscription</a> -->
+
+  <div class="modal fade" id="modal-03" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content text-center">
+        <div class="modal-body">
+          <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="row">
+          </div>
+          <h3>{{msglabel.default.GetaQuote}}</h3>
+          <!-- <p class="mb-6"></p> -->
+          <div class="newsletter-wrapper">
+            <div class="row">
+              <div class="col-md-10 offset-md-1">
+                <div id="mc_embed_signup">
+
+                  <form class="contact-form needs-validation" method="post" action="./assets/php/contact.php"
+                    novalidate="" [formGroup]="contactForm">
+                    <div class="messages"></div>
+                    <div class="row gx-4">
+                      <div class="col-md-12">
+                        <div class="form-floating mb-4">
+                          <input id="form_name" type="text" name="name" class="form-control" placeholder="Jane"
+                            required="" formControlName="name">
+                          <label for="form_name">{{msglabel.default.Name}}*</label>
+                          <div class="invalid-feedback d-block"
+                            *ngIf="contactForm.get('name')?.hasError('required') && contactForm.get('name')?.touched">
+                            {{msglabel.default.PleaseenteryourName}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-floating mb-4">
+                          <input id="form_lastname" type="email" name="email" class="form-control"
+                            placeholder="jane.doe@example.com" required="" formControlName="email">
+                          <label for="form_lastname">{{msglabel.default.WorkEmail}}*</label>
+                          <div class="invalid-feedback d-block"
+                            *ngIf="contactForm.get('email')?.hasError('required') && contactForm.get('email')?.touched">
+                            {{msglabel.default.Pleaseenteremail}}
+                          </div>
+                          <div class="invalid-feedback d-block"
+                            *ngIf="contactForm.get('email')?.hasError('pattern') && contactForm.get('email')?.touched">
+                            {{msglabel.default.Pleaseentervalidworkemail}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-floating mb-4">
+                          <input id="form_email" type="number" name="mobile" class="form-control"
+                            placeholder="1234567890" required="" formControlName="mobile">
+                          <label for="form_email">{{msglabel.default.MobileNo}}*</label>
+                          <div class="form-text text-muted">
+                            {{msglabel.default.FormatXXXXXXXXXXXX}}
+                          </div>
+                          <div class="invalid-feedback d-block"
+                            *ngIf="contactForm.get('mobile')?.hasError('required') && contactForm.get('mobile')?.touched">
+                            {{msglabel.default.Pleaseentermobilenumber}}
+                          </div>
+                          <div class="invalid-feedback d-block"
+                            *ngIf="contactForm.get('mobile')?.hasError('pattern') && contactForm.get('mobile')?.touched">
+                            {{msglabel.default.Pleaseentervalidmobilenumber}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-select-wrapper mb-4">
+                          <select class="form-select" id="form-select" name="category" required=""
+                            formControlName="category">
+                            <ng-container *ngIf="contactCategory$ | async as contactCategory">
+                              <option value="">{{msglabel.default.SelectaDepartment}} </option>
+                              <option *ngFor="let cc of contactCategory.results" [value]="cc.id">{{cc.name}}
+                              </option>
+                            </ng-container>
+                          </select>
+                          <div class="invalid-feedback d-block"
+                            *ngIf="contactForm.get('category')?.hasError('required') && contactForm.get('category')?.touched">
+                            {{msglabel.default.Pleaseselectacategory}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-floating mb-4">
+                          <input id="form_email" type="text" name="company" class="form-control" placeholder="google"
+                            required="" formControlName="company">
+                          <label for="form_email">{{msglabel.default.Company}}*</label>
+                          <div class="invalid-feedback d-block"
+                            *ngIf="contactForm.get('company')?.hasError('required') && contactForm.get('company')?.touched">
+                            {{msglabel.default.Pleaseentercompanyname}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-floating mb-4">
+                          <input id="form_email" type="text" name="designation" class="form-control"
+                            placeholder="Tech Lead" required="" formControlName="designation">
+                          <label for="form_email">{{msglabel.default.Designation}} *</label>
+                          <div class="invalid-feedback d-block"
+                            *ngIf="contactForm.get('designation')?.hasError('required') && contactForm.get('designation')?.touched">
+                            {{msglabel.default.Pleaseenterdesignation}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-floating mb-4">
+                          <textarea id="form_message" name="user_message" class="form-control"
+                            placeholder="Your message" style="height: 150px" required=""
+                            formControlName="user_message"></textarea>
+                          <label for="form_message">{{msglabel.default.Message}}*</label>
+                          <div class="invalid-feedback d-block"
+                            *ngIf="contactForm.get('user_message')?.hasError('required') && contactForm.get('user_message')?.touched">
+                            {{msglabel.default.Pleaseentermessage}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="input-group mb-4">
+                          <re-captcha
+                            style="display:flex;transform:scale(1.0);-webkit-transform:scale(1.0);transform-origin:0 0;-webkit-transform-origin:0 0;"
+                            name="recaptcha" formControlName="recaptcha">
+                          </re-captcha>
+                        </div>
+                      </div>
+                      <div class="col-12 text-center">
+                        <input type="submit" [disabled]="!contactForm.valid"
+                          class="btn btn-primary rounded-pill btn-send mb-3" value="Send message" (click)="onSave()"
+                          *ngIf="!formSubmitted">
+                        <p class="text-muted" *ngIf="formSubmitted">{{msglabel.default.Pleasewait}}</p>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

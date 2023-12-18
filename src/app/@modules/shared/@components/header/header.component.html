@@ -1,0 +1,324 @@
+<header class="wrapper bg-soft-primary">
+        <div class="container">
+                <nav class="navbar row classic w-100 align-items-center text-center px-5 justify-content-lg-center justify-content-between position-absolute navbar-expand-lg banner--clone fixed banner--stick {{navColorClass}} "
+                        [ngClass]="{ 'navbar-dark':navTextModeIsWhite}">
+                        <!-- <div class="row   align-items-center justify-content-between"> -->
+                        <div
+                                class="navbar-brand  col-lg-2 col-md-3 col-sm-3 col-5 d-flex justify-content-lg-end justify-content-center ps-lg-0 ">
+                                <a routerLink="{{selectedLanguage}}/" class="">
+                                        <img *ngIf="!navTextModeIsWhite" class="logo" src="assets/img/hr-logo.png"
+                                                alt="logo" />
+                                        <img *ngIf="navTextModeIsWhite" class="logo" src="assets/img/horz-light.svg"
+                                                alt="logo" />
+                                </a>
+                        </div>
+
+                        <div #navbarContentElem
+                                class="navbar-collapse offcanvas-nav my-sidebar col-lg- 10 col-md-9 col-2 ">
+                                <div #navbarContentElem
+                                        class=" col-xl-12 col-lg-12 col-12  d-lg-flex justify-content-center">
+                                        <div class="offcanvas-header d-lg-none d-xl-none">
+                                                <a routerLink="{{selectedLanguage}}/"
+                                                        (click)="navBarToggle(navbarContentElem)">
+                                                        <img class="logo" src="assets/img/horz-light.svg" alt="logo" />
+                                                </a>
+                                                <button type="button"
+                                                        class="btn-close btn-close-white offcanvas-close offcanvas-nav-close"
+                                                        aria-label="Close"
+                                                        (click)="navBarToggle(navbarContentElem)"></button>
+                                        </div>
+                                        <div class="offcanvas-body d-flex flex-column" style="height: 80%;">
+                                                <ul class="navbar-nav ms-lg-auto ms-0 text-lg-end text-start">
+                                                        <li class="nav-item dropdown">
+                                                                <a data-bs-toggle="dropdown" href="#"
+                                                                        (mouseenter)="toggleDropdown1(true)"
+                                                                        (mouseleave)="toggleDropdown1(false)"
+                                                                        class="nav-link dropdown-toggle"
+                                                                        style="padding-bottom: 0.25rem"
+                                                                        (click)="toggleDropdown()"
+                                                                        routerLink="{{selectedLanguage}}/services">
+                                                                        {{msglabel.default.Services}}
+                                                                </a>
+                                                                <div style="height: 0.75rem;"
+                                                                        (mouseenter)="toggleDropdown1(true)"></div>
+                                                                <ul id="service-dropdown"
+                                                                        class=" dropdown-menu d-flex flex-column align-items-center"
+                                                                        (mouseenter)="toggleDropdown1(true)"
+                                                                        (mouseleave)="toggleDropdown1(false)"
+                                                                        [hidden]="!showDropdown"
+                                                                        [ngClass]="showDropdown == true ? 'abc' : 'xyz'">
+                                                                        <li class="nav-item dropdown d-flex flex-row "
+                                                                                *ngFor="let service of serviceList; let i = index;"
+                                                                                (mouseenter)="submenu(service.id)">
+                                                                                <a class="nav-link dropdown-toggle py-2 "
+                                                                                        data-bs-toggle="dropdown"
+                                                                                        (click)="navBarToggle(navbarContentElem)"
+                                                                                        href="/EN/services/#{{service.title}}"
+                                                                                        (click)="goto( service.id)">
+                                                                                        {{ service.title }}
+                                                                                </a>
+                                                                                <ul class="dropdown-menu"
+                                                                                        id="sub-service-dropdown"
+                                                                                        style="position: absolute; top: -10%; left: 100%;"
+                                                                                        *ngIf="subdata && subdata.length > 0">
+                                                                                        <li class="dropdown-item"
+                                                                                                *ngFor="let subservice of subdata; let i = index;">
+                                                                                                <a class="nav-link  py-2"
+                                                                                                        routerLink="{{selectedLanguage}}/services/{{service.slug}}/{{subservice.value}}">
+                                                                                                        {{subservice.key}}
+                                                                                                </a>
+                                                                                        </li>
+                                                                                </ul>
+                                                                        </li>
+                                                                </ul>
+                                                        </li>
+                                                        <!-- <li class="nav-item dropdown">
+                                                        <a href="#" data-bs-toggle="dropdown"
+                                                                class="nav-link dropdown-toggle">About Us</a>
+                                                        <ul class="dropdown-menu">
+                                                                <li class="nav-item"
+                                                                        (click)="navBarToggle(navbarContentElem)"><a
+                                                                                class="dropdown-item"
+                                                                                [routerLink]="ab.routerLink"
+                                                                                *ngFor="let ab of aboutUs">{{ab.title}}</a>
+                                                                </li>
+
+
+                                                        </ul>
+                                                </li> -->
+                                                        <li class="nav-item dropdown">
+                                                                <a class="nav-link dropdown-toggle"
+                                                                        data-bs-toggle="dropdown"
+                                                                        (click)="navBarToggle(navbarContentElem)"
+                                                                        routerLink="{{selectedLanguage}}/products-store">
+                                                                        {{msglabel.default.Product}}
+                                                                </a>
+                                                                <ul class="dropdown-menu">
+                                                                        <li class="nav-item " style="cursor: pointer;"
+                                                                                (click)="navBarToggle(navbarContentElem)"
+                                                                                *ngFor="let product of productlist.results; let i = index;"
+                                                                                (click)="gotoproduct( product.id)">
+                                                                                <a class=" dropdown-item">{{
+                                                                                        product.title }}</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </li>
+
+                                                        <li class="nav-item dropdown">
+                                                                <a class="nav-link"
+                                                                        (click)="navBarToggle(navbarContentElem)"
+                                                                        routerLink="{{selectedLanguage}}/industries">
+                                                                        {{msglabel.default.Industries}}
+                                                                </a>
+                                                        </li>
+
+                                                        <li class="nav-item dropdown">
+                                                                <a class="nav-link"
+                                                                        (click)="navBarToggle(navbarContentElem)"
+                                                                        routerLink="{{selectedLanguage}}/clients">
+                                                                        {{msglabel.default.Clients}}
+                                                                </a>
+                                                        </li>
+
+
+                                                        <li class="nav-item dropdown">
+                                                                <a href="#" data-bs-toggle="dropdown"
+                                                                        class="nav-link dropdown-toggle">{{msglabel.default.Resources}}</a>
+                                                                <ul class="dropdown-menu">
+                                                                        <li class="nav-item"
+                                                                                (click)="navBarToggle(navbarContentElem)">
+                                                                                <a class="dropdown-item"
+                                                                                        routerLink="{{selectedLanguage}}/blogs">{{msglabel.default.Blog}}</a>
+                                                                        </li>
+                                                                        <li class="nav-item"
+                                                                                (click)="navBarToggle(navbarContentElem)">
+                                                                                <a class="dropdown-item"
+                                                                                        routerLink="{{selectedLanguage}}/case-studies">{{msglabel.default.CaseStudies}}
+                                                                                </a>
+                                                                        </li>
+                                                                        <li class="nav-item"
+                                                                                (click)="navBarToggle(navbarContentElem)">
+                                                                                <a class="dropdown-item"
+                                                                                        routerLink="{{selectedLanguage}}/technology-catalog">{{msglabel.default.TechnologyCatalog}}
+                                                                                </a>
+                                                                        </li>
+                                                                        <li class="nav-item"
+                                                                                (click)="navBarToggle(navbarContentElem)">
+                                                                                <a class="dropdown-item"
+                                                                                        routerLink="{{selectedLanguage}}/technology-handouts">{{msglabel.default.TechnologyHandout}}
+                                                                                </a>
+                                                                        </li>
+                                                                        <li class="nav-item"
+                                                                                (click)="navBarToggle(navbarContentElem)">
+                                                                                <a class="dropdown-item"
+                                                                                        routerLink="{{selectedLanguage}}/webinar">
+                                                                                        {{msglabel.default.Webinar}}
+                                                                                </a>
+                                                                        </li>
+
+
+                                                                </ul>
+                                                        </li>
+                                                        <li class="nav-item dropdown"
+                                                                *ngIf="localstoragelanguage == 'IN'">
+                                                                <a href="#" data-bs-toggle="dropdown"
+                                                                        class="nav-link dropdown-toggle">{{msglabel.default.AboutUs}}</a>
+                                                                <ul class="dropdown-menu">
+                                                                        <li class="nav-item"
+                                                                                (click)="navBarToggle(navbarContentElem)">
+                                                                                <a class="dropdown-item"
+                                                                                        [routerLink]="selectedLanguage + '/' + ab.routerLink"
+                                                                                        *ngFor="let ab of aboutUsEN">{{ab.title}}</a>
+                                                                        </li>
+
+
+                                                                </ul>
+                                                        </li>
+
+                                                        <li class="nav-item dropdown"
+                                                                *ngIf="localstoragelanguage == 'EN'">
+                                                                <a href="#" data-bs-toggle="dropdown"
+                                                                        class="nav-link dropdown-toggle">{{msglabel.default.AboutUs}}</a>
+                                                                <ul class="dropdown-menu">
+                                                                        <li class="nav-item"
+                                                                                (click)="navBarToggle(navbarContentElem)">
+                                                                                <a class="dropdown-item"
+                                                                                        [routerLink]="selectedLanguage + '/' + ab.routerLink"
+                                                                                        *ngFor="let ab of aboutUsEN">{{ab.title}}</a>
+                                                                        </li>
+
+
+                                                                </ul>
+                                                        </li>
+
+
+                                                        <li class="nav-item dropdown"
+                                                                *ngIf="localstoragelanguage == 'JP'">
+                                                                <a href="#" data-bs-toggle="dropdown"
+                                                                        class="nav-link dropdown-toggle">{{msglabel.default.AboutUs}}</a>
+                                                                <ul class="dropdown-menu">
+                                                                        <li class="nav-item"
+                                                                                (click)="navBarToggle(navbarContentElem)">
+                                                                                <a class="dropdown-item"
+                                                                                        [routerLink]="selectedLanguage + '/' + ab.routerLink"
+                                                                                        *ngFor="let ab of aboutUsJP">{{ab.title}}</a>
+                                                                        </li>
+
+
+                                                                </ul>
+                                                        </li>
+                                                        <li class="nav-item dropdown">
+                                                                <a class="nav-link"
+                                                                        (click)="navBarToggle(navbarContentElem)"
+                                                                        href="https://ncircletech.zohorecruit.com/jobs/Careers"
+                                                                        target="_blank">
+                                                                        {{msglabel.default.Career}}
+                                                                </a>
+                                                        </li>
+
+
+                                                        <li class="nav-item dropdown ">
+                                                                <a class="nav-link"
+                                                                        (click)="navBarToggle(navbarContentElem)"
+                                                                        routerLink="{{selectedLanguage}}/contact-us">
+                                                                        {{msglabel.default.ContactUs}}
+                                                                </a>
+                                                        </li>
+                                                        <li class="nav-item dropdown my-auto ">
+                                                                <div class="form-select-wrapper my-auto">
+                                                                        <select class="form-select"
+                                                                                [(ngModel)]="seletedoption"
+                                                                                (change)="lung($event)">
+                                                                                <option *ngFor="let i of staticLanguages;"
+                                                                                        [value]="i.name">
+                                                                                        <i class="fa fa-{{i.icon}}"></i>
+                                                                                        {{i.name}}
+                                                                                </option>
+                                                                        </select>
+                                                                </div>
+                                                        </li>
+                                                        <!-- <li class="nav-item dropdown traslate">
+                                                        <div id="google_translate_element" #element12></div>
+                                                </li> -->
+
+                                                        <!-- <li class="nav-item dropdown "> -->
+                                                        <!-- </li> -->
+                                                </ul>
+
+
+                                                <div class="offcanvas-footer d-lg-none">
+                                                        <div>
+                                                                <a href="mailto:info@ncircletech.com"
+                                                                        mailto:class="link-inverse">info@ncircletech.com</a>
+                                                                <br>
+                                                                <p>
+                                                                        <a href="tel:+91 020 6694 1900">+91 020 6694
+                                                                                1900</a>
+                                                                </p>
+                                                                <br>
+                                                                <nav class="nav social social-white mt-4">
+                                                                        <a [href]="si.link" target="_blank"
+                                                                                *ngFor="let si of socialLinks"><i
+                                                                                        [class]="'uil uil-'+si.icon"></i></a>
+                                                                </nav>
+                                                        </div>
+                                                </div>
+                                        </div>
+
+                                </div>
+                                <!-- /.navbar-collapse -->
+
+                                <!-- <div class="navbar-other ms-lg-4">
+                                <ul class="navbar-nav flex-row align-items-center ms-auto" data-sm-skip="true">
+                                        <li class="nav-item d-none d-md-block">
+                                                <a class="btn btn-sm btn-white rounded-pill"
+                                                        routerLink="{{selectedLanguage}}/contact-us">{{msglabel.default.ContactUs}}</a>
+                                        </li>
+                                        <div class="col-md-2 mt-3">
+                                                <div class="form-select-wrapper mb-4">
+                                                        <select class="form-select" [(ngModel)]="seletedoption" (change)="lung($event)">
+                                                                <option *ngFor="let i of staticLanguages;"
+                                                                        [value]="i.name">
+                                                                        <i class="fa fa-{{i.icon}}"></i> {{i.name}}
+                                                                </option>
+                                                        </select>
+                                                </div>
+                                        </div> -->
+
+                                <!-- <label class="switch ms-lg-4">
+                                                <input type="checkbox"  (change)="isActive()" >
+                                                <span class="slider round"></span>
+                                                <p>The state is {{ checked }}    -    {{status}}.</p>
+
+                                     </label> -->
+                                <!-- <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" (change)="isActive()">
+                                                <label  for="flexSwitchCheckDefault">the state is {{ checked }}</label>
+                                              </div> -->
+                                <!-- <li class="nav-item ms-lg-0">
+                                                <div class="navbar-hamburger d-lg-none d-xl-none ms-auto">
+                                                        <button class="hamburger animate plain"
+                                                                data-toggle="offcanvas-nav"
+                                                                (click)="navBarToggle(navbarContentElem)"><span></span>
+                                                        </button>
+                                                </div>
+                                        </li>
+                                </ul>
+
+                        </div> -->
+
+                                <!-- <div *ngIf="showNavbar" class="offcanvas-backdrop fade show"
+                                (click)="navBarToggle(navbarContentElem)"></div> -->
+                                <!-- /.navbar-other -->
+                        </div>
+                        <div class="col-6 d-lg-none d-block text-end fade show text-dark">
+                                <i class="uil uil-bars  my-auto" (click)="navBarToggle(navbarContentElem)"></i>
+                        </div>
+                        <!-- /.container -->
+                </nav>
+        </div>
+        <!-- /.navbar -->
+        <div class="content-wrapper">
+                <header class="wrapper bg-soft-primary"></header>
+        </div>
+</header>

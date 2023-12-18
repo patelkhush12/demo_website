@@ -1,0 +1,122 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+  <app-image-with-page-title image="{{bannerData?.image}}" title="{{bannerData?.pagename}}">
+  </app-image-with-page-title>
+  <section class="wrapper bg-light">
+    <div class="container py-16">
+      <div class="row gx-lg-8 gx-xl-12">
+        <div class="col-lg-8">
+          <div class="hide">
+            <app-sidebar-search [route]="'/webinar/'"></app-sidebar-search>
+          </div>
+          <div class="blog grid grid-view mb-5">
+            <div class="row isotope gx-md-8 gy-8">
+              <!-- <div class="card image-wrapper bg-full bg-image bg-overlay bg-overlay-400 container container-lg"
+                data-image-src="./assets/img/photos/bg2.jpg" style="background-image: url(&quot;{{item.image}}&quot;);"
+                *ngFor="let item of webinarListData.results">
+                <div class="pt-5 px-sm-11 px-5">
+                  <ul class="post-meta d-flex mb-0">
+                    <li class="post-date text-white"><i class="uil uil-calendar-alt"></i><span>{{item.webinar_date |
+                        date}}</span>
+                    </li>
+                    <li class="post-comments text-white"><a><i class="uil uil-eye"></i>{{item.views}}</a></li>
+                  </ul>
+                </div>
+                <div class="card-body p-sm-11 px-5">
+                  <div class="row align-items-center gy-6">
+                    <div class="col-lg-12">
+                      <h3 [routerLink]="item.slug" class="cursor-pointer display-5 text-white">{{item.title}}</h3>
+                      <a [href]="item.register_link" *ngIf="(item.webinar_date | isEventUpcoming)" target="_blank"
+                        class="btn btn-primary">
+                        Register
+                      </a>
+                      <a [href]="(item.description | hasWebinarIframeLink)"
+                        *ngIf="(item.description | hasWebinarIframeLink)" target="_blank" class="btn btn-primary">
+                        Watch Now
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+              <article class="post" *ngFor="let item of webinarListData.results">
+                <div class="card">
+                  <figure class="card-img-top overlay overlay-1 hover-scale"><a (click)="getBlogLink(item.slug)"
+                      target="_blank">
+                      <img style="object-fit:cover;height: 15rem!important;" [src]="item.image" alt="">
+                      <span class="bg"></span></a>
+                  </figure>
+                  <div class="card-body px-3 px-sm-7">
+                    <div class="post-header">
+                      <h2 class="post-title mt-1 mb-0">
+                        <a [routerLink]="item.slug" class="pointers link-dark" (click)="getBlogLink(item.slug)"
+                          target="_blank">{{item.title}}</a>
+                      </h2>
+                      <!-- <a [routerLink]="item.slug" class="pointers link-dark" href="/webinar/{{item.slug}}" target="_blank">{{item.title}}</a> -->
+
+                    </div>
+                    <div class="post-content">
+                      <!-- <p [innerHTML]="item.description | truncateHtml:[150]"></p> -->
+                    </div>
+                  </div>
+                  <div class="card-footer px-3 px-sm-7 d-flex justify-content-between align-items-center">
+                    <div>
+                      <a [href]="item.register_link" *ngIf="(item.webinar_date | isEventUpcoming)" target="_blank"
+                        class="btn btn-primary mr-2">
+                        Register
+                      </a>
+                      <a [href]="(item.description | hasWebinarIframeLink)"
+                        *ngIf="(item.description | hasWebinarIframeLink)" target="_blank" class="btn btn-primary mr-2">
+                        Watch Now
+                      </a>
+                    </div>
+                    <div class="post-likes ms-auto">
+                      <a class="m-2"><i class="uil uil-calendar-alt"></i><span>{{item.webinar_date | date}}</span></a>
+                      <a class="m-2"><i class="uil uil-eye"></i>{{item.views}}</a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+          <div *ngIf="webinarListData.count == 0" class="alert alert-primary alert-icon" role="alert">
+            <i class="uil uil-file-question"></i> {{msglabel.default.NoWebinarFound}}
+          </div>
+          <app-pagination (changePage)="onPageChange($event)" *ngIf="webinarListData.count > 0" [pageSize]="2"
+            [totalPages]="webinarListData.count"></app-pagination>
+        </div>
+
+        <aside class="col-lg-4 sidebar mt-8 mt-lg-0">
+          <app-sidebar-search *ngIf="localstoragelanguage == 'EN' " [route]="'/' + localstoragelanguage +'/webinar/'"
+            class="hide2"></app-sidebar-search>
+          <app-sidebar-search *ngIf="localstoragelanguage == 'JP' " [route]="'/' + localstoragelanguage +'/webinar/'"
+            class="hide2"></app-sidebar-search>
+          <app-sidebar-search *ngIf="localstoragelanguage == 'IN' " [route]="'/'  +'/webinar/'"
+            class="hide2"></app-sidebar-search>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'EN'" [route]="'/' + localstoragelanguage +'/webinar/'"
+            label="{{msglabel.default.RecentWebinar}}" [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'JP'" [route]="'/' + localstoragelanguage +'/webinar/'"
+            label="{{msglabel.default.RecentWebinar}}" [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/webinar/'"
+            label="{{msglabel.default.RecentWebinar}}" [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'EN'" [route]="'/' + localstoragelanguage +'/webinar/'"
+            [categories]="apiData.category.results">
+          </app-sidebar-categories>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'JP'" [route]="'/' + localstoragelanguage +'/webinar/'"
+            [categories]="apiData.category.results">
+          </app-sidebar-categories>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/webinar/'"
+            [categories]="apiData.category.results">
+          </app-sidebar-categories>
+          <app-side-banner-v1></app-side-banner-v1>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+  <app-enquiryform></app-enquiryform>
+
+</ng-container>

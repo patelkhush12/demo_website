@@ -1,0 +1,13 @@
+<div class="alert alert-primary alert-icon alert-dismissible fade show" role="alert" *ngIf="!accepted">
+  <!-- <i class="uil uil-star"></i> -->
+  <span class="content">
+
+    This website uses cookies to improve your experience while you navigate through the website. Out of these cookies, the
+    cookies that are categorized as necessary are stored on your browser as they are essential for the working of basic
+    functionalities of the website. We also use third-party cookies that help us analyze and understand how you use this
+    website.
+    <a routerLink="/privacy-cookie-policy" class="alert-link hover">Read More</a>.
+    <button (click)="onAccept()" class="btn btn-sm btn-outline-primary rounded-0 py-0 px-1 m-2">Accept</button>
+  </span>
+  <button type="button" class="btn-close d-none d-lg-block" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>

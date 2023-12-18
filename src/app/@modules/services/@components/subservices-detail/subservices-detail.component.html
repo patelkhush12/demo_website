@@ -1,0 +1,138 @@
+<!-- <ng-container class="content-wrapper" > -->
+
+<div class="content-wrapper">
+
+    <section class="wrapper bg-light" *ngIf="singleDetail$ | async as  singleDetail">
+        <div class="container mt-15 py-0 position-relative"
+            *ngIf="singleDetail.lp_image_1 && singleDetail.lp_title1 && singleDetail.list_description1 != 'null'">
+            <div class="position-relative mt-10">
+                <!-- <div class="shape rounded-circle bg-line primary rellax w-18 h-18" data-rellax-speed="1"
+                    style="top: -2rem; right: -2.7rem; z-index: 0; transform: translate3d(0px, -121px, 0px);"></div>
+                <div class="shape rounded-circle bg-soft-primary rellax w-18 h-18" data-rellax-speed="1"
+                    style="bottom: -1rem; left: -3rem; z-index: 0; transform: translate3d(0px, -45px, 0px);"></div> -->
+                <div class="card shadow-lg">
+                    <div class="row gx-md-8 gx-xl-12">
+                        <div class="col-md-12 ">
+                            <div class="col-md-4">
+                                <div class="">
+                                    <figure class="itooltip itooltip-fuchsia mt-9"><a target="_blank"><img
+                                                class="service-detail-img rounded img-fluid mx-md-5  m-0 mb-3 mt-0"
+                                                [src]="singleDetail?.lp_image_1" alt=""></a></figure>
+                                    <!-- style="object-fit: contain;float: left;" -->
+                                </div>
+
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="">
+                                    <div class="" id="swiper-wrapper-5891c9ecbbb76493" aria-live="off">
+                                        <div class="m-md-5 m-0 mb-3" style="width: auto; " role="group"
+                                            aria-label="1 / 3">
+                                            <div class="fs-sm">
+                                                <h1 class="mt-5 w-100">{{singleDetail.lp_title1}}</h1>
+                                                <p [innerHTML]="singleDetail.list_description1  | safeHtml">
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </section>
+        <section class="wrapper bg-light my-3"> -->
+        <div class="container position-relative wrapper  py-5"
+            *ngIf="singleDetail.lp_title2 && singleDetail.list_description2 != 'null'">
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="tab2-1">
+                    <div class="row flex p-5">
+                        <div class="col-lg-12 card shadow-lg p-10">
+                            <h2 class="mb-3">{{singleDetail.lp_title2}}</h2>
+                            <ul class="icon-list bullet-bg bullet-soft-blue">
+                                <li>
+
+                                    <!-- <ng-container> -->
+                                    <!-- <i class="uil uil-check"></i> -->
+                                    <!-- </ng-container> -->
+                                    <p [innerHTML]="singleDetail.list_description2 | safeHtml">
+
+                                        <!-- {{singleDetail.list_description2}} -->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container position-relative wrapper bg-light my-3 mt-5"
+            *ngIf="singleDetail.lp_image_3 && singleDetail.lp_title3 && singleDetail.list_description3 != 'null'">
+            <div class="position-relative">
+                <div class="card shadow-lg">
+                    <div class="row flex p-5" [ngClass]="{'flex-row-reverse':singleDetail.is_right_to_left}">
+                        <div class=" d-md-none d-block mx-auto text-center">
+                            <figure class="itooltip itooltip-fuchsia float-lg-end float-none w-75 mx-auto"
+                                style="width: 400px;"><a target="_blank"><img
+                                        class="service-detail-img rounded img-fluid   m-0 mb-3 mt-0 w-100"
+                                        [src]="singleDetail?.lp_image_3" alt=""></a></figure>
+                        </div>
+                        <div class="col-lg-12 ">
+                            <figure class="itooltip itooltip-fuchsia float-md-end float-none d-md-block d-none lp-imh-3"
+                                style="width: 400px;"><a target="_blank"><img
+                                        class="service-detail-img rounded img-fluid   m-0 mb-3 mt-0 w-100"
+                                        [src]="singleDetail?.lp_image_3" alt=""></a></figure>
+                            <div class="">
+                                <div class="" id="swiper-wrapper-5891c9ecbbb76493" aria-live="off">
+                                    <div class="" style="width: auto;" role="group" aria-label="1 / 3">
+                                        <div class="fs-sm">
+                                            <h1>{{singleDetail.lp_title3}}</h1>
+                                            <p [innerHTML]="singleDetail.list_description3 | safeHtml">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-lg-6 image-wrapper bg-image bg-cover rounded"
+                                style="background-image: url(&quot;{{singleDetail.lp_image_3}}&quot;);">
+                            </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-10">
+
+            <div class="row text-center justify-content-center">
+                <!-- <div class="col-xl-10 mx-auto">
+                        <h2 class="fs-15 text-uppercase text-primary mb-3">What We Do</h2>
+                        <h3 class="display-4 mb-10 px-xxl-15">Our Technology Catalog</h3>
+                    </div> -->
+            </div>
+            <div class="row gy-6 flex p-5 justify-content-center">
+                <div class="col-md-3 col-lg-3 card p-1 mb-2 me-3 chips" *ngFor="let chip of abcd">
+                    <a class="card1 h-100">
+                        <div>
+                            <h3>{{ chip.tags_title }}</h3>
+                        </div>
+                        <ng-container *ngFor="let aaa of chip.tags">
+                            <span class="badge bg-pale-blue text-blue rounded py-1 mb-2 mx-1">{{ aaa.name }}</span>
+                        </ng-container>
+                        <div class="go-corner"></div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <app-enquiryform></app-enquiryform>
+
+    </section>
+</div>
+<!-- </div> -->
+
+
+
+<!-- </ng-container>  -->

@@ -1,0 +1,109 @@
+<div id="scroll-top">
+  <ng-container *ngIf="apiData$ | async as apiData">
+    <app-image-with-page-title image="{{bannerData?.image ? bannerData?.image : '' }}" title="{{bannerData?.pagename}}">
+    </app-image-with-page-title>
+    <section id="snippet-1" class="wrapper bg-light wrapper-border">
+      <div class="container py-10 position-relative pt-15 pt-md-17 pb-13 pb-md-15">
+        <div class="row mb-3">
+          <div class="col-md-10 col-lg-12 col-xl-10 col-xxl-9 mx-auto text-center">
+            <h3 class="display-4 mb-7 px-lg-19 px-xl-18">{{msglabel.default.Leaders}}</h3>
+          </div>
+        </div>
+        <div class="row grid-view gx-md-8 gx-xl-10 gy-8 gy-lg-0">
+          <div class="col-md-6 col-lg-3" *ngFor="let item of apiData.team | filterByRole : 'leaders'"
+            style="cursor: pointer;">
+            <div class="position-relative h-100">
+              <div class="shape rounded bg-soft-blue rellax d-md-block h-100" data-rellax-speed="0"
+                style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index: 0; transform: translate3d(0px, 0px, 0px);">
+              </div>
+              <div (click)="selectedLeader=item" style="cursor: default;">
+                <div class="card mt-5 h-100">
+                  <img class="card-img-top" style="object-fit: cover; height: 12rem;" [src]="item?.image"
+                    [alt]="item?.name">
+                  <div class="card-body px-5">
+                    <span>
+                      <a style="cursor: pointer;">
+                        <h4 class="mb-1 h-10" data-bs-toggle="modal" data-bs-target="#modal-010">{{item?.name}}</h4>
+                      </a>
+                      <p class="meta mb-2 h-10" style="color: #606164;">{{item?.job_title}}</p>
+                    </span>
+                    <span class="d-flex justify-content-center">
+                      <a [href]="item?.link" target="_blank" style="font-size: 200%; color: #164194;"><i
+                          class="uil uil-linkedin"></i></a>
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="modal-010" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+              <div class="modal-content text-center">
+                <div class="modal-body" *ngIf="selectedLeader"
+                  style="padding-right:0rem!important;padding-left:0rem!important;">
+                  <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <section class="wrapper bg-light">
+                    <div class="container">
+                      <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
+                        <div class="col-lg-12">
+                          <div class="swiper-container text-center mb-6" data-margin="30" data-dots="true"
+                            data-items-xl="3" data-items-md="2" data-items-xs="1">
+                            <div class="swiper">
+                              <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                  <img class="rounded-circle h-20 w-20 mb-4" style="object-fit: cover;"
+                                    [src]="selectedLeader.image" [alt]="selectedLeader.name" />
+                                  <h4 class="mb-1">{{selectedLeader?.name}}</h4>
+                                  <div class="meta mb-2">{{selectedLeader?.job_title}}</div>
+                                  <p class="mb-2">{{selectedLeader?.description}}</p>
+                                  <a [href]="selectedLeader.link" target="_blank"
+                                    style="font-size: 200%; color: #164194;">
+                                    <i class="uil uil-linkedin"></i>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="snippet-2" class="wrapper bg-light wrapper-border">
+      <div class="container pt-15 pt-md-17 pb-13 pb-md-15">
+        <div class="row mb-3">
+          <div class="col-md-10 col-xl-9 col-xxl-7 mx-auto text-center">
+            <h2 class="display-4 mb-3 px-lg-14">{{msglabel.default.Pillars}}</h2>
+          </div>
+        </div>
+        <div class="row grid-view">
+          <div class="col-md-6 col-lg-3" *ngFor="let item of apiData.team | filterByRole : 'pillars'">
+            <div class="item-inner">
+              <div class="card h-100">
+                <div class="card-header">
+                  <img class="rounded-circle w-100 h-100 mb-4 object-cover" [src]="item?.image" [alt]="item?.name">
+                </div>
+                <div class="card-body text-center px-2">
+                  <h4 class="mb-1 h-10">{{item?.name}}</h4>
+                  <p class="meta mb-2 h-10" style="color: #606164;">{{item?.job_title}}</p>
+                  <a [href]="item?.link" target="_blank" style="font-size: 200%; color: #164194;"><i
+                      class="uil uil-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <app-life-at-ncircle [gallery]="apiData.gallery"></app-life-at-ncircle>
+  </ng-container>
+  <app-enquiryform></app-enquiryform>
+
+</div>

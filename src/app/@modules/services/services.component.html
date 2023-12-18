@@ -1,0 +1,119 @@
+<!-- <div class="content-wrapper">
+    <app-header>
+    </app-header> -->
+
+<app-image-with-page-title image="{{bannerData?.image}}" title="{{bannerData?.pagename}}">
+</app-image-with-page-title>
+<div class="container pt-15 text-center">
+    <div class="row">
+        <div class="col-md-8 col-lg-88 col-xl-7 col-xxl-7 mx-auto mb-11">
+            <p class="lead px-lg-7 px-xl-7 px-xxl-6">
+                {{msglabel.default.nCircleisaonestop2D3DProductdevelopmentstudioforAECandManufacturinghavingworkedwith}}
+                <span> {{msglabel.default.Softwarecompanies}}</span> {{msglabel.default.for}} <span>
+                    {{msglabel.default.years}}
+                </span> {{msglabel.default.andhaving}}
+                {{msglabel.default.successfullydevelopedover}}<span>
+                    {{msglabel.default.client}}
+                </span>{{msglabel.default.products}}
+            </p>
+        </div>
+    </div>
+</div>
+
+<section class="wrapper bg-light">
+    <div class="container text-center">
+        <!-- /.row -->
+        <div class="position-relative">
+            <div class="shape rounded-circle bg-soft-blue rellax w-16 h-16"
+                style="bottom: -0.5rem; right: -2.2rem; z-index: 0;"></div>
+            <div class="shape bg-dot yellow rellax w-16 h-17" style="top: -0.5rem; left: -2.5rem; z-index: 0;"></div>
+            <div class="row gx-md-5 gy-5 text-center">
+                <div class="col-md-6 col-xl-3" *ngFor="let content of ContanierList.results">
+                    <div class="card shadow-lg h-100">
+                        <div class="card-body">
+                            <img [src]="content.icon" class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt="" />
+                            <i class="uil uil-user-arrows"></i>
+                            <h4>{{content?.content}}</h4>
+                            <!-- <p class="mb-2">Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus cras justo.</p> -->
+                            <!-- <a href="#" class="more hover link-yellow">Learn More</a> -->
+
+                        </div>
+                        <!--/.card-body -->
+                    </div>
+                    <!--/.card -->
+                </div>
+
+
+
+            </div>
+            <!--/.row -->
+        </div>
+        <!-- /.position-relative -->
+    </div>
+    <!-- /.container -->
+</section>
+<section class="wrapper bg-light">
+    <div class="container mb-md-20">
+        <div class="row  align-items-center my-5" [ngClass]="{'flex-row-reverse':i%2==0}"
+            *ngFor="let service of serviceList;let i = index;" id="sec{{service.id}}">
+            <div class="col-lg-6 position-relative">
+                <div class="btn btn-circle btn-primary disabled position-absolute counter-wrapper flex-column d-none d-md-flex"
+                    style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 170px; height: 170px;">
+                    <h3 class="text-white mb-1 mt-n2"><span class="counter counter-lg">{{service?.list_kpi}}</span></h3>
+                    <p>{{service?.list_kpi_title}}</p>
+                </div>
+                <div class="row gx-md-5 gy-5 align-items-center">
+                    <div class="col-md-6">
+                        <div class="row gx-md-5 gy-5">
+                            <div class="col-md-10 offset-md-2">
+                                <figure class="rounded"><img [src]="service.list_image_1" alt=""></figure>
+                            </div>
+                            <!--/column -->
+                            <div class="col-md-12 hide-icon">
+                                <figure class="rounded"><img [src]="service.list_image_2" alt=""></figure>
+                            </div>
+                            <!--/column -->
+                        </div>
+                        <!--/.row -->
+                    </div>
+                    <!--/column -->
+                    <div class="col-md-6 hide-icon">
+                        <figure class="rounded"><img [src]="service.list_image_3"></figure>
+                    </div>
+                    <!--/column -->
+                </div>
+                <!--/.row -->
+            </div>
+            <!--/column -->
+            <div class="col-lg-6">
+                <img [src]="'assets/img/ui0'+((i%2) + 1)+'.svg'" class="svg-inject icon-svg icon-svg-md mb-4 hide-icon"
+                    alt="" />
+                <h3 class="display-5 my-5">
+                    {{service.title}}
+                </h3>
+                <p class="mb-7" [innerHTML]="service?.list_description | safeHtml">
+
+                </p>
+                <div class="row counter-wrapper gy-6">
+                    <div class="col-md-4" *ngFor="let kpi of service.service_kpi">
+                        <h3 class="counter text-primary">{{kpi?.kpi}}</h3>
+                        <p>{{kpi?.kpi_title}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <a [routerLink]="service?.slug"
+                            class="btn btn-soft-leaf rounded-pill mt-5 mb-10">{{msglabel.default.MoreDetails}}</a>
+                    </div>
+                </div>
+                <!--/.row -->
+            </div>
+            <!--/column -->
+        </div>
+    </div>
+    <app-enquiryform></app-enquiryform>
+
+</section>
+<!-- /section -->
+<!-- </div>
+<app-footer></app-footer> -->

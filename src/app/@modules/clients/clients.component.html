@@ -1,0 +1,109 @@
+<ng-container *ngIf="apiData$ | async as apiData">
+  <!-- <app-header></app-header> -->
+  <!-- <section class="wrapper bg-gray">
+    <div class="container py-12 pb-md-16 pt-md-19 text-center">
+      <div class="row">
+        <div class="col-lg-10 col-xxl-8 mx-auto">
+          <h1 class="display-1 mb-3">Clients</h1>
+          <p class="lead mb-1">Our Clients</p>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <app-image-with-page-title image="{{bannerData?.image}}" title="{{bannerData?.pagename}}"></app-image-with-page-title>
+  <section class="wrapper bg-light">
+    <div class="container pt-md-8">
+      <div class="row gx-lg-8 gx-xl-12 gy-10 gy-lg-0" *ngFor="let industry of clientsData.industryList">
+        <div class="col-lg-4 mt-lg-2 text-center text-sm-center text-lg-start">
+          <h3 class="display-4 my-3 pe-xxl-5"><span>{{industry?.companies.length}} +</span>
+            {{industry?.industry}}</h3>
+        </div>
+        <div class="col-lg-8">
+          <div class="row row-cols-2 row-cols-md-4 gx-0 gx-md-8 gx-xl-12 gy-12">
+            <div class="col" *ngFor="let company of industry.companies">
+              <figure class="px-3 px-md-0 px-xxl-2"><img [src]="company?.logo" [alt]="company?.company" /></figure>
+            </div>
+          </div>
+        </div>
+        <hr class="my-8" />
+      </div>
+    </div>
+  </section>
+  <section class="wrapper bg-light wrapper-border" id="snippet-3">
+    <div class="container pb-13 pb-md-10">
+      <div class="row gx-xl-12 gy-10">
+        <div class="col-xl-12">
+          <h2 class="display-4">{{msglabel.default.ClientTestimonials}}</h2>
+          <p class="lead fs-lg my-3">{{msglabel.default.WhatOurClientsSayAboutOurSolutions}}</p>
+        </div>
+        <div class="col-xl-6" *ngFor="let item of clientsData.testimonialList.results;let i = index">
+          <div class="card h-100" [ngStyle]="{'background': colorsArray[i%4]}">
+            <div class="card-body">
+              <blockquote class="icon mb-0">
+                <p>“{{item?.content}}”</p>  
+              </blockquote>
+            </div>
+            <div class="card-footer">
+              <div class="blockquote-details">
+                <img class="rounded-circle w-12" [src]="item.individual.company.logo" alt="Company Logo">
+                <div class="info">
+                  <h5 class="mb-1">{{item?.individual.name}}</h5>
+                  <p class="mb-0">{{item?.individual.position}} at {{item?.individual?.company?.name}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-pagination (changePage)="onPageChange($event)" *ngIf="clientsData.testimonialList.count > 0" [pageSize]="6"
+          [totalPages]="clientsData.testimonialList.count"></app-pagination>
+      </div>
+    </div>
+    <app-enquiryform></app-enquiryform>
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <section class="wrapper bg-light wrapper-border" id="snippet-3">
+    <div class="container pb-13 pb-md-10" *ngIf="apiData1$ | async as PartnersInfo">
+      <div class="row gx-xl-12 gy-10">
+        <div class="col-xl-12">
+          <h2 class="display-4">Trusted Partner</h2>
+
+        </div>
+        <div class="col-xl-6" *ngFor="let item of PartnersInfo.partnerList.results;let i = index">
+          <div class="card h-100" [ngStyle]="{'background': colorsArray[i%4]}">
+            <div class="card-body">
+              <blockquote class="icon mb-0">
+                <p>“{{item.description}}”</p>
+              </blockquote>
+            </div>
+            <div class="card-footer">
+              <div class="blockquote-details">
+                <img class="rounded-circle w-12" [src]="item.company.logo" alt="Company Logo">
+                <div class="info">
+                  <h5 class="mb-1">{{item.company.name}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-pagination (changePage)="onPageChange1($event)" *ngIf="PartnersInfo.partnerList.count > 0" [pageSize]="6"
+          [totalPages]="PartnersInfo.partnerList.count "></app-pagination>
+      </div>
+    </div>
+  </section> -->
+
+</ng-container>

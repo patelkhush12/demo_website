@@ -1,0 +1,84 @@
+<ng-container style="background-color: #fbfbfb;" *ngIf="apiData$ | async as apiData">
+  <app-image-with-page-title image="{{bannerData?.image}}" title="{{bannerData?.pagename}}">
+  </app-image-with-page-title>
+  <section class="wrapper bg-light">
+    <div class="container py-14 py-md-16">
+      <div class="row gx-lg-8 gx-xl-12">
+        <div class="col-lg-8">
+          <div class="hide">
+            <app-sidebar-search [route]="'/technology-handouts/'"></app-sidebar-search>
+          </div>
+          <div class="blog grid grid-view">
+            <div class="row isotope gx-md-8 gy-8 mb-8">
+              <article class="col-md-6" *ngFor="let item of techHandoutListData?.results">
+                <div class="shadow bg-white h-100">
+                  <figure class="overlay overlay-1 hover-scale">
+                    <a (click)="getBlogLink(item.slug)" target="_blank">
+                      <img [src]="item?.image" [alt]="item?.title" class="h-20" style="object-fit: cover;"><span
+                        class="bg"></span>
+                      <!-- <a>
+                          <img [src]="item.image ? item.image : blogDefaultImage" [alt]="item.title" class="h-20"
+                            style="object-fit: cover;"><span class="bg"></span>
+                        </a> -->
+                    </a>
+                  </figure>
+                  <div class="post-header py-2 px-5">
+                    <h2 class="post-title h3 mt-1 mb-3">
+                      <a [routerLink]="item.slug" class="pointers link-dark" (click)="getBlogLink(item.slug)"
+                        target="_blank">{{item?.title}}</a>
+                    </h2>
+                  </div>
+                  <div class="post-footer pb-4 px-5">
+                    <ul class="post-meta d-flex justify-content-between">
+                      <li class="post-date"><i class="uil uil-calendar-alt"></i><span>{{item.technologyhandout_date |
+                          date}}</span>
+                      </li>
+                      <li class="post-comments"><a><i class="uil uil-eye"></i>{{item?.views}}</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+              <div *ngIf="techHandoutListData.count == 0" class="alert alert-primary alert-icon" role="alert">
+                <i class="uil uil-file-question"></i> {{msglabel.default.NoTechnologyHandoutFound}}
+              </div>
+              <app-pagination (changePage)="onPageChange($event)" *ngIf="techHandoutListData.count > 0" [pageSize]="4"
+                [totalPages]="techHandoutListData.count"></app-pagination>
+            </div>
+          </div>
+        </div>
+
+        <aside class="col-lg-4 sidebar mt-8 mt-lg-0">
+          <app-sidebar-search *ngIf="localstoragelanguage == 'EN'"
+            [route]="'/' + localstoragelanguage +'/technology-handouts/'" class="hide2"></app-sidebar-search>
+          <app-sidebar-search *ngIf="localstoragelanguage == 'JP'"
+            [route]="'/' + localstoragelanguage +'/technology-handouts/'" class="hide2"></app-sidebar-search>
+          <app-sidebar-search *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/technology-handouts/'"
+            class="hide2"></app-sidebar-search>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'JP'"
+            [route]="'/' + localstoragelanguage +'/technology-handouts/'"
+            label="{{msglabel.default.RecentTechnologyHandout}}" [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'EN'"
+            [route]="'/' + localstoragelanguage +'/technology-handouts/'"
+            label="{{msglabel.default.RecentTechnologyHandout}}" [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-recent *ngIf="localstoragelanguage == 'IN'" [route]="'/'  +'/technology-handouts/'"
+            label="{{msglabel.default.RecentTechnologyHandout}}" [recentItem]="apiData.recent">
+          </app-sidebar-recent>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'EN'"
+            [route]="  '/' + localstoragelanguage + '/technology-handouts/'" [categories]="apiData.category.results">
+          </app-sidebar-categories>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'JP'"
+            [route]="  '/' + localstoragelanguage +'/technology-handouts/'" [categories]="apiData.category.results">
+          </app-sidebar-categories>
+          <app-sidebar-categories *ngIf="localstoragelanguage == 'IN'" [route]=" '/'+ '/technology-handouts/'"
+            [categories]="apiData.category.results">
+          </app-sidebar-categories>
+          <app-side-banner-v1></app-side-banner-v1>
+        </aside>
+      </div>
+    </div>
+  </section>
+  <app-enquiryform></app-enquiryform>
+
+</ng-container>

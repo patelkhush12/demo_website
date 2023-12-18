@@ -1,0 +1,58 @@
+<section class="wrapper image-wrapper bg-content">
+    <!--  pt-18 pb-16  -->
+    <div class="container">
+        <!-- {{expertise | json}} -->
+        <div class="row gy-6 gy-lg-0 mb-10 mb-md-18">
+            <div [ngsReveal]="{'duration': 2000}" class="col-lg-4 d-flex flex-column justify-content-around">
+                <h2 class="display-1 mt-6 mb-5 text-white">
+                    {{msglabel.default.ADecadelong}}
+
+                    <span class="exp-title">
+                        {{msglabel.default.Leadership}}
+                    </span>
+                </h2>
+                <!-- <p class="text-white lead fs-lg subtitle">
+                    nCircle Tech: The best software development partner for Construction Software companies
+                </p> -->
+
+                <a *ngIf="localstoragelanguage == 'EN'" routerLink="/EN/clients"
+                    class="btn btn-primary mt-2 custom-btn-border-radius"
+                    style="width: fit-content;">{{msglabel.default.MeetOurCircle}}</a>
+                <a *ngIf="localstoragelanguage == 'JP'" routerLink="/JP/clients"
+                    class="btn btn-primary mt-2 custom-btn-border-radius"
+                    style="width: fit-content;">{{msglabel.default.MeetOurCircle}}</a>
+                <a *ngIf="localstoragelanguage == 'IN'" routerLink="/clients"
+                    class="btn btn-primary mt-2 custom-btn-border-radius"
+                    style="width: fit-content;">{{msglabel.default.MeetOurCircle}}</a>
+            </div>
+            <!--/column -->
+            <div [ngsReveal]="{'duration': 2000}"
+                class="col-lg-7 offset-lg-1 pricing-wrapper d-flex  align-items-center">
+                <div class="row">
+                    <div class="col-md-6 mb-5" *ngFor="let i of expertise|slice:0:2">
+                        <div class="pricing card h-100">
+                            <div class="card-body" style="padding:1rem;">
+                                <img class="exp-img" [src]="i.bg_image" alt="">
+                                <h4 class="card-title mt-2 subtitle">{{i.title}}</h4>
+                                <p>{{i.subtitle}}</p>
+                                <!-- <a [routerLink]="i.button_link" class="btn btn-primary custom-btn-border-radius">Learn
+                                    More</a> -->
+                            </div>
+                            <div class="card-footer" style="border-top: 0;padding-top: 0;">
+                                <a *ngIf="localstoragelanguage == 'EN'" [routerLink]=" '/'+ 'EN' + '/' + i.button_link"
+                                    class="btn btn-primary custom-btn-border-radius">{{msglabel.default.LearnMore}}</a>
+                                <a *ngIf="localstoragelanguage == 'JP'" [routerLink]="'/'+'JP' + '/' + i.button_link"
+                                    class="btn btn-primary custom-btn-border-radius">{{msglabel.default.LearnMore}}</a>
+                                <a *ngIf="localstoragelanguage == 'IN'" [routerLink]=" '/' + i.button_link"
+                                    class="btn btn-primary custom-btn-border-radius">{{msglabel.default.LearnMore}}</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.row -->
+            </div>
+            <!--/column -->
+        </div>
+    </div>
+</section>

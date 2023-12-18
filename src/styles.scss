@@ -1,0 +1,239 @@
+.goog-te-combo {
+    padding: 5px !important;
+    border-radius: 5px;
+    width: 117px !important;
+}
+
+.goog-te-combo option {
+    width: 101px !important;
+}
+
+
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+    border: none !important;
+    box-shadow: 0px !important;
+
+}
+
+body.VIpgJd-ZVi9od-ORHb {
+    display: none;
+}
+
+.VIpgJd-ZVi9od-ORHb {
+    display: none !important;
+}
+
+.goog-te-gadget {
+    font-size: 0px !important;
+}
+
+.VIpgJd-ZVi9od-TvD9Pc-hSRGPd {}
+
+.logo {
+    width: 8rem;
+}
+
+// #google_translate_element{
+//     margin-top: 80px;
+//     margin-left: 20px;
+//     position: fixed;
+//     width: 40px;
+//     z-index: 999999;
+// }
+
+
+.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+    visibility: hidden !important;
+
+}
+
+#skiptranslate {
+    // display: none
+    visibility: hidden !important;
+}
+
+// iframe {
+//     // visibility: hidden !important; 
+//     display: none !important;
+//     border: none;
+//     background: transparent !important
+// }
+
+// iframe .VIpgJd-ZVi9od-ORHb {
+//     display: none !important;
+// }
+
+.my-panel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    display: block;
+}
+
+body {
+    transition: background-color 1s ease;
+}
+
+.color-c100,
+.color-c100 .navbar {
+    // background-color: rgba(252, 252, 252, 0.1);
+    background-color: transparent;
+}
+
+
+.color-c0,
+.color-c0 .navbar {
+    background-color: #fff;
+}
+
+.color-c1,
+.color-c1 .navbar {
+    background-color: #FF8B22;
+}
+
+.color-c2,
+.color-c2 .navbar {
+    background-color: #19181A;
+}
+
+.color-c3,
+.color-c3 .navbar {
+    background-color: #36A9E1;
+}
+
+.color-c4,
+.color-c4 .navbar {
+    background-color: #164194;
+}
+
+.color-c5,
+.color-c5 .navbar {
+    background-color: #19181A;
+}
+
+.color-c6,
+.color-c6 .navbar {
+    background-color: #f19031;
+}
+
+.color-c7,
+.color-c7 .navbar {
+    background-color: #f2293a;
+}
+
+.color-c8,
+.color-c8 .navbar {
+    background-color: #dfdfdf;
+}
+
+.color-c9,
+.color-c9 .navbar {
+    background-color: #6bc8f7;
+}
+
+.text-color-white .nos,
+.text-color-white .navItem {
+    color: white !important;
+}
+
+.text-color-white .chevron::after,
+.text-color-white .chevron::before,
+.text-color-white .bar,
+.text-color-white button.hamburger span,
+.text-color-white button.hamburger:after,
+.text-color-white button.hamburger:before {
+    background-color: white !important;
+}
+
+.text-color-white .navItem:hover::before {
+
+    background-color: #0a162e;
+}
+
+.text-color-white .dropdown-toggle::after {
+    color: white;
+}
+
+.text-color-white .bar {
+    background-color: white !important;
+}
+
+.text-color-white .dropdown-item {
+    color: #0a162e !important;
+}
+
+
+
+//  TODO Css to hide home screen color transitions
+.color-c5 .client-wrap {
+    // display: none;
+    // opacity: 0;
+    color: white;
+    // transition: all 0.3s ease-in-out; 
+}
+
+.color-c5 .client-wrap h2,
+.color-c5 .client-wrap h5,
+.color-c5 .client-wrap .uil,
+.color-c5 .client-wrap a {
+    color: white;
+}
+
+.color-c0 .what-we-do-wrap {
+    opacity: 0;
+}
+
+// CAROUSEL
+
+// CAROUSEL
+
+.post-content img {
+    width: 100% !important;
+    object-fit: contain !important;
+    height: fit-content !important;
+}
+
+.btn {
+    font-weight: 600 !important;
+}
+
+.display-2 {
+    // font-weight: 600!important;
+}
+
+.counter-wrapper p {
+    font-weight: 600;
+    font-size: .7rem;
+}
+
+h3 {
+    font-weight: 600;
+}
+
+.counter-wrapper .counter {
+    font-size: 1.5rem
+}
+
+// // Montserrat Fonts Setting
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600;900&display=swap');
+
+.html-wrapper img {
+    width: 100% !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.ql-video {
+    width: 100% !important;
+    height: 20rem;
+}
+
+swiper>.swiper.s-wrapper .swiper-wrapper .swiper-slide {
+    min-height: 25rem;
+}
+
+.custom-btn-border-radius {
+    border-radius: .2rem;
+}

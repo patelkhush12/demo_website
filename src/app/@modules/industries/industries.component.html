@@ -1,0 +1,47 @@
+
+<app-image-with-page-title image="{{bannerData?.image}}" title="{{bannerData?.pagename}}">
+</app-image-with-page-title>
+<section class="wrapper bg-light">
+  <div class="container py-10">
+    <ng-container *ngIf="apiData$ | async as apiData">
+
+      <div *ngFor="let industry of apiData?.results;let i = index"
+        class="row gx-lg-8 gx-xl-12 gy-10 mb-10 align-items-center" [ngClass]="{'flex-row-reverse':i%2==0 }">
+        <div class="col-md-12">
+          <div class="col-md-4 position-relative text-start ms-0"
+          style="margin: 30px;"
+          [ngClass]="i % 2 === 0 ? 'float-right' : 'float-left'">
+        <!-- <div class="col-md-4   position-relative text-start ms-0 " style="float:left ;margin: 30px;" [ngClass]="{'float-left':i%2==0 }"> -->
+          <div class="shape bg-line leaf rounded-circle rellax w-17 h-17" data-rellax-speed="1"
+            style="top: -2.3rem; right: -1.4rem;"></div>
+          <div class="shape bg-pale-violet rounded-circle rellax w-17 h-17" data-rellax-speed="1"
+            style="bottom: -2rem; left: -1.8rem;" [ngClass]="i % 2 === 0 ? 'float-right1' : 'float-left1'"></div>
+          <figure class="rounded mb-0"><img [src]="industry?.outer_description_image"
+              style="object-fit: cover;height: 20rem!important;"[ngClass]="i % 2 === 0 ? 'float-right1' : 'float-left1'" alt="">
+          </figure>
+        </div>
+
+        <!-- <div class="col-lg-12"> -->
+     
+          <h3 class="display-4 mb-4">{{industry?.title}}</h3>
+          <p class="mb-5"  #para class="mainpara" [innerHTML]="industry.outer_description | safeHtml"></p>
+           <a href="#" class="btn btn-soft-leaf rounded-pill mt-0 mb-0" [routerLink]="industry.slug">{{msglabel.default.MoreDetails}}</a>
+        </div>
+      
+        <!-- </div> -->
+      </div>
+    </ng-container>
+  </div>
+<app-enquiryform></app-enquiryform>
+</section>
+<!-- <ng-container *ngIf="apiData$ | async as apiData">
+  <div *ngFor="let industry of apiData?.results;let i = index"
+        class="row gx-lg-8 gx-xl-12 gy-10 mb-10 align-items-center" [ngClass]="{'flex-row-reverse':i % 2==0}">
+
+
+<p> <figure class="rounded mb-0"><img [src]="industry?.outer_description_image"
+  style="object-fit: cover;height: 20rem!important;float:left;margin: 30px;" alt="" width="200px">
+</figure>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.</p>
+  </div>
+</ng-container> -->
